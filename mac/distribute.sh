@@ -111,7 +111,7 @@ function push_env() {
   export OLD_LD=$LD
   export OLD_CMAKECMD=$CMAKECMD
 
-  CMAKECMD="cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH -DCMAKE_PREFIX_PATH=${QT_BASE}"
+  CMAKECMD="/usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH -DCMAKE_PREFIX_PATH=${QT_BASE}"
 
   export CC="/usr/bin/clang"
   export CXX="/usr/bin/clang++"
