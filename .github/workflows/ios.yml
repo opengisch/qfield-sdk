@@ -36,10 +36,9 @@ jobs:
 
       - name: ⬆️ Install Build Dependencies
         run: |
-          brew install bison flex
+          brew install bison flex automake shtool
           echo "/usr/local/opt/flex/bin" >> $GITHUB_PATH
           echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
-          brew install automake shtool
 
       - name: Cache Qt
         id: cache-qt
@@ -66,7 +65,7 @@ jobs:
           cp ${{ github.workspace }}/ios/tools/ios.toolchain.cmake ${{ env.OSGeo4I_PATH }}/cmake/
 
       - name: 📦 Zip sdk
-        run: zip --junk-paths -r OSGeo4I ${{ env.OSGeo4I_PATH }}
+        run: zip -r ${{ github.workspace }}/OSGeo4I.zip ${{ env.OSGeo4I_PATH }}
 
       - name: 📦 Upload Sdk in Artifacts
         uses: actions/upload-artifact@v2
