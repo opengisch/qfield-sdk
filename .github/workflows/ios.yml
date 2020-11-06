@@ -38,7 +38,7 @@ jobs:
         run: |
           brew install bison flex
           echo "/usr/local/opt/flex/bin" >> $GITHUB_PATH
-          echo "/usr/local/opt/bison" >> $GITHUB_PATH
+          echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
           brew install automake shtool
 
       - name: Cache Qt
