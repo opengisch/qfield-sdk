@@ -66,7 +66,9 @@ jobs:
           cp ${{ github.workspace }}/ios/tools/ios.toolchain.cmake ${{ env.OSGeo4I_PATH }}/cmake/
 
       - name: 📦 Zip sdk
-        run: zip -r ${{ github.workspace }}/OSGeo4I.zip ${{ env.OSGeo4I_PATH }}
+        run: |
+          cd ${{ env.ROOT_OUT_PATH }}
+          zip -r ${{ github.workspace }}/OSGeo4I.zip OSGeo4I
 
       - name: 📦 Upload Sdk in Artifacts
         uses: actions/upload-artifact@v2
