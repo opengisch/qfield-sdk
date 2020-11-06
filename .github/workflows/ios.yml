@@ -50,7 +50,7 @@ jobs:
       - name: ⬆️ Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: ${{ matrix.version }}
+          version: ${{ matrix.qt-version }}
           target: ios
           dir: ${{ env.OSGeo4I_PATH }}
 
