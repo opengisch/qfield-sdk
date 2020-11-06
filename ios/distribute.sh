@@ -28,8 +28,8 @@ fi
 
 # Paths
 ROOT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-STAGE_PATH="${ROOT_OUT_PATH}/stage/$ARCH"
-NATIVE_STAGE_PATH="${ROOT_OUT_PATH}/stage/native"
+STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/$ARCH"
+NATIVE_STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/native"
 RECIPES_PATH="$ROOT_PATH/recipes"
 BUILD_PATH="${ROOT_OUT_PATH}/build"
 LIBS_PATH="${ROOT_OUT_PATH}/build/libs"
@@ -675,7 +675,7 @@ function run_postbuild() {
 function run() {
   for ARCH in ${ARCHES[@]}; do
     cd ${ROOT_PATH}
-    STAGE_PATH="${ROOT_OUT_PATH}/stage/$ARCH"
+    STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/$ARCH"
     run_prepare
     run_source_modules
     run_get_packages
