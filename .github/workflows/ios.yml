@@ -39,6 +39,7 @@ jobs:
           brew install bison flex
           echo "/usr/local/opt/flex/bin" >> $GITHUB_PATH
           echo "/usr/local/opt/bison" >> $GITHUB_PATH
+          brew install autoconf automake libtool
 
       - name: Cache Qt
         id: cache-qt
