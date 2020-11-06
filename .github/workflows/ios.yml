@@ -27,7 +27,7 @@ jobs:
       ARCHES: ${{ matrix.ios-deployment-architecture }}
       ROOT_OUT_PATH: ${{ github.workspace }}/build
       OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
-      QT_BASE: ${{ github.workspace }}/build/OSGeo4I/Qt/${{ matrix.qt-version }}
+      QT_BASE: ${{ github.workspace }}/Qt/${{ matrix.qt-version }}
       QT_VERSION: ${{ matrix.qt-version }}
       IOS_CONFIG: ${{ github.workspace }}/ios.config.conf
 
@@ -44,7 +44,7 @@ jobs:
         id: cache-qt
         uses: actions/cache@v2
         with:
-          path: ${{ env.OSGeo4I_PATH }}
+          path: ${{ github.workspace }}
           key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios
 
       - name: ⬆️ Install Qt
@@ -52,10 +52,11 @@ jobs:
         with:
           version: ${{ matrix.qt-version }}
           target: ios
-          dir: ${{ env.OSGeo4I_PATH }}
+          dir: ${{ github.workspace }}
 
       - name: 🔨 Build Sdk
         run: |
+          echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
           echo "" > ${IOS_CONFIG}
           ${{ github.workspace }}/ios/distribute.sh -mqgis
 
