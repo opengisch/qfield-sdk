@@ -20,7 +20,7 @@ jobs:
         include:
           - qt-version: '5.15.1'
             ios-deployment-target: '12.0'
-            ios-deployment-architecture: "arm64"
+            ios-deployment-architecture: "arm64 x86_64"
 
     env:
       IOS_MIN_SDK_VERSION: ${{ matrix.ios-deployment-target }}
@@ -52,9 +52,11 @@ jobs:
         with:
           version: ${{ matrix.qt-version }}
           target: ios
+          # Create $GITHUB_WORKSPACE/Qt/5.15.1/ios
           dir: ${{ github.workspace }}
 
       - name: 🔨 Build Sdk
+        continue-on-error: true
         run: |
           echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
           echo "" > ${IOS_CONFIG}
@@ -75,6 +77,16 @@ jobs:
         with:
           name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
           path: ${{ github.workspace }}/OSGeo4I.zip
+
+      - name: 📦 Zip qt
+        run: |
+          zip -r ${{ github.workspace }}/Qt-${{ matrix.qt-version }}.zip Qt
+
+      - name: 📦 Upload Qt Sdk in Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Qt-${{ matrix.qt-version }}.zip
+          path: ${{ github.workspace }}/Qt-${{ matrix.qt-version }}.zip
 
       - name: 🚀 Create Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
