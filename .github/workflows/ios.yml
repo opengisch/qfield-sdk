@@ -27,7 +27,7 @@ jobs:
       ARCHES: ${{ matrix.ios-deployment-architecture }}
       ROOT_OUT_PATH: ${{ github.workspace }}/build
       OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
-      QT_BASE: ${{ github.workspace }}/build/OSGeo4I/Qt/${{ matrix.qt-version }}/ios
+      QT_BASE: ${{ github.workspace }}/build/OSGeo4I/Qt/${{ matrix.qt-version }}
       QT_VERSION: ${{ matrix.qt-version }}
       IOS_CONFIG: ${{ github.workspace }}/ios.config.conf
 
@@ -45,7 +45,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.OSGeo4I_PATH }}
-          key: ${{ runner.os }}-QtCache-${{ matrix.version }}-ios
+          key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios
 
       - name: ⬆️ Install Qt
         uses: jurplel/install-qt-action@v2
