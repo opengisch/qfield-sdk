@@ -178,8 +178,6 @@ function push_arm() {
           PLATFORM="SIMULATOR"
       fi
       VERSION_MIN="-mios-simulator-version-min=${IOS_MIN_SDK_VERSION}"
-      echo "TODO: not tested!"
-      exit 1
   else
       SDK="iphoneos"
       PLATFORM="OS"

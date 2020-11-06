@@ -1,13 +1,13 @@
 # Build instruction for iOS
 
-# How to release Qt for iOS 
+# How to release Qt for iOS
 QT in SDK is just downloaded and extracted
 from dropbox archive. When updating QT version
 1. download QT for iSO from the official downloader
 2. compress the /opt/Qt/${QT_VERSION} folder and
 3. upload compressed file qt-${QT_VERSION}-ios.tar.gz to dropbox
 
-# How to release input-sdk for iOS 
+# How to release input-sdk for iOS
 bump version in config.pri
 1. build locally ios/distribute.sh -mqgis
 2. compress with the `create_package.bash`
@@ -20,7 +20,7 @@ bump version in config.pri
 # Building instructions
 
 This provides a set of scripts to build opensource geo tools for iOS (iPhone and iPad)
-Only works on MacOS systems, since you need XCode to compile binaries for iOS. The build system is maintained for QGIS 3.x 
+Only works on MacOS systems, since you need XCode to compile binaries for iOS. The build system is maintained for QGIS 3.x
 releases.
 
 Tested with iPhoneOS13.4.sdk, Qt 5.14.2 and arm64, min SDK 12.0 on iPad running iOS 12.x
@@ -50,14 +50,14 @@ Build instructions
 Create a file config.conf in the root folder by copying the config.conf.default
 file and edit it accordingly to your needs.
 
-You may want to clone qgis/QGIS locally and point the config.conf file to your local 
-repository, if you are working on qgis/QGIS development. 
+You may want to clone qgis/QGIS locally and point the config.conf file to your local
+repository, if you are working on qgis/QGIS development.
 
 ```sh
-cd ios 
+cd ios
 cp config.conf.default config.conf
 # nano config.conf
-./distribute.sh -dqgis
+./distribute.sh -mqgis
 ```
 
 Now all libraries should be in stage/<architecture> folder for linking.
@@ -69,7 +69,7 @@ but do not push that upstream!
 Application distribution instructions
 -------------------------------------
 
-You need to package the stage libraries to the device and modify rpath to point 
+You need to package the stage libraries to the device and modify rpath to point
 to the base
 
 MUST READ: http://doc.qt.io/qt-5/platform-notes-ios.html
