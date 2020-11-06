@@ -23,12 +23,12 @@ jobs:
             ios-deployment-architecture: "arm64"
 
     env:
-      QT_VERSION: ${{ matrix.qt-version }}
       IOS_MIN_SDK_VERSION: ${{ matrix.ios-deployment-target }}
       ARCHES: ${{ matrix.ios-deployment-architecture }}
       ROOT_OUT_PATH: ${{ github.workspace }}/build
-      OSGeo4I_PATH: ${{ env.ROOT_OUT_PATH }}/OSGeo4I
-      QT_BASE: ${{ env.OSGeo4I_PATH }}/Qt/${{ env.QT_VERSION }}/ios
+      OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
+      QT_BASE: ${{ github.workspace }}/build/OSGeo4I/Qt/${{ matrix.qt-version }}/ios
+      QT_VERSION: ${{ matrix.qt-version }}
       IOS_CONFIG: ${{ github.workspace }}/ios.config.conf
 
     steps:
