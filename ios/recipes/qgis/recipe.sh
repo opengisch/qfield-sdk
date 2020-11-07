@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # version of your package
-VERSION_qgis=3.16
+VERSION_qgis=610703c59d6e487687287c5a34ab56c2a87421d9
 
 # dependencies of this recipe
-DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain geodiff)
+DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain geodiff exiv2)
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/4fe3d2f4e6032e502b10725ad3cd78c18f6a739c.tar.gz
+URL_qgis=https://github.com/qgis/QGIS/archive/${VERSION_qgis}.tar.gz
 
 # md5 of the package
 MD5_qgis=470a24620cfc9df3f1883cf4e9ec53e2
@@ -32,7 +32,7 @@ function prebuild_qgis() {
   then
     echo "\$O4iOS_qgis_DIR is not empty, manually patch your files if needed!"
   else
-    try patch -p1 < $RECIPE_qgis/patches/std++11.patch
+    try patch -p1 < $RECIPE_qgis/patches/qgis.patch
   fi
 
   touch .patched
@@ -112,6 +112,8 @@ function build_qgis() {
     -DENABLE_TESTS=OFF \
     -DEXPAT_INCLUDE_DIR=$STAGE_PATH/include \
     -DEXPAT_LIBRARY=$STAGE_PATH/lib/libexpat.a \
+    -DEXIV2_INCLUDE_DIR=$STAGE_PATH/include \
+    -DEXIV2_LIBRARY=$STAGE_PATH/lib/libexiv2.a \
     -DWITH_INTERNAL_QWTPOLAR=OFF \
     -DWITH_QWTPOLAR=OFF \
     -DWITH_GUI=OFF \

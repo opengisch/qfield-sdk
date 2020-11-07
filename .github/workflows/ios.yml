@@ -29,7 +29,7 @@ jobs:
       OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
       QT_BASE: ${{ github.workspace }}/Qt/${{ matrix.qt-version }}
       QT_VERSION: ${{ matrix.qt-version }}
-      IOS_CONFIG: ${{ github.workspace }}/ios.config.conf
+      IOS_CONFIG: ${{ github.workspace }}/ios/ios.config.conf
 
     steps:
       - uses: actions/checkout@v2
@@ -77,16 +77,6 @@ jobs:
         with:
           name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
           path: ${{ github.workspace }}/OSGeo4I.zip
-
-      - name: 📦 Zip qt
-        run: |
-          zip -r ${{ github.workspace }}/Qt-${{ matrix.qt-version }}.zip Qt
-
-      - name: 📦 Upload Qt Sdk in Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: Qt-${{ matrix.qt-version }}.zip
-          path: ${{ github.workspace }}/Qt-${{ matrix.qt-version }}.zip
 
       - name: 🚀 Create Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
