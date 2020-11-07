@@ -1,0 +1,38 @@
+diff --git a/src/futils.cpp b/src/futils.cpp
+index e46a00dd..98538b52 100644
+--- a/src/futils.cpp
++++ b/src/futils.cpp
+@@ -56,8 +56,6 @@
+ #  define _WIN64 1
+ # endif
+ #elif defined(__APPLE__)
+-# include <mach-o/dyld.h>
+-# include <libproc.h>
+ #elif defined(__FreeBSD__)
+ # include <sys/param.h>
+ # include <sys/queue.h>
+@@ -487,11 +485,6 @@ namespace Exiv2 {
+             CloseHandle(processHandle);
+         }
+     #elif defined(__APPLE__)
+-        const int pid = getpid();
+-        char pathbuf[PROC_PIDPATHINFO_MAXSIZE];
+-        if (proc_pidpath (pid, pathbuf, sizeof(pathbuf)) > 0) {
+-            ret = pathbuf;
+-        }
+     #elif defined(__linux__) || defined(__CYGWIN__) || defined(__MSYS__)
+         // http://stackoverflow.com/questions/606041/how-do-i-get-the-path-of-a-process-in-unix-linux
+         char proc[100];
+@@ -537,12 +530,6 @@ namespace Exiv2 {
+             }
+         }
+ #elif defined(__APPLE__)
+-        // man 3 dyld
+-        uint32_t count = _dyld_image_count();
+-        for (uint32_t image = 0 ; image < count ; image++ ) {
+-            std::string path(_dyld_get_image_name(image));
+-            pushPath(path,libs,paths);
+-        }
+ #elif defined(__FreeBSD__)
+         unsigned int n;
+         struct procstat*      procstat = procstat_open_sysctl();
