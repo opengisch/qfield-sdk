@@ -56,7 +56,6 @@ jobs:
           dir: ${{ github.workspace }}
 
       - name: 🔨 Build Sdk
-        continue-on-error: true
         run: |
           echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
           echo "" > ${IOS_CONFIG}
