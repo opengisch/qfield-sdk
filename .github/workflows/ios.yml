@@ -17,10 +17,10 @@ jobs:
     strategy:
       matrix:
         qt-version: ['5.15.1']
+        ios-deployment-architecture: ['arm64', 'x86_64']
         include:
           - qt-version: '5.15.1'
             ios-deployment-target: '12.0'
-            ios-deployment-architecture: "arm64 x86_64"
 
     env:
       IOS_MIN_SDK_VERSION: ${{ matrix.ios-deployment-target }}
@@ -96,5 +96,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/OSGeo4I.zip
-          asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ github.run_number }}.zip
+          asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
           asset_content_type: application/zip
