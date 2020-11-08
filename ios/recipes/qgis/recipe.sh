@@ -33,6 +33,7 @@ function prebuild_qgis() {
     echo "\$O4iOS_qgis_DIR is not empty, manually patch your files if needed!"
   else
     try patch -p1 < $RECIPE_qgis/patches/qgis.patch
+    try patch -p1 < $RECIPE_qgis/patches/qgis-printer.patch
   fi
 
   touch .patched
