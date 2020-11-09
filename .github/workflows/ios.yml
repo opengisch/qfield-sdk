@@ -26,7 +26,8 @@ jobs:
       ROOT_OUT_PATH: ${{ github.workspace }}/build
       OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
       QT_VERSION: ${{ matrix.qt-version }}
-      IOS_CONFIG: ${{ github.workspace }}/ios/ios.config.conf
+      IOS_CONFIG: ios.config.conf
+      IOS_SCRIPT: ${{ github.workspace }}/ios/
 
     steps:
       - uses: actions/checkout@v2
@@ -55,8 +56,8 @@ jobs:
       - name: 🔨 Build Sdk
         run: |
           QT_BASE=${Qt5_Dir}/../..
-          echo "export ARCHES=("arm64" "x86_64")" > ${IOS_CONFIG}
-          ${{ github.workspace }}/ios/distribute.sh -mqgis
+          echo "export ARCHES=("arm64" "x86_64")" > ${IOS_SCRIPT}/${IOS_CONFIG}
+          ${IOS_SCRIPT}/distribute.sh -mqgis
 
       - name: 🔨 Copy ios cmake toolchain to sdk
         run: |
