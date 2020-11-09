@@ -25,7 +25,6 @@ jobs:
       IOS_MIN_SDK_VERSION: ${{ matrix.ios-deployment-target }}
       ROOT_OUT_PATH: ${{ github.workspace }}/build
       OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
-      QT_BASE: ${{ github.workspace }}/Qt/${{ matrix.qt-version }}
       QT_VERSION: ${{ matrix.qt-version }}
       IOS_CONFIG: ${{ github.workspace }}/ios/ios.config.conf
 
@@ -56,7 +55,7 @@ jobs:
       - name: 🔨 Build Sdk
         run: |
           ARCHES=("arm64" "x86_64")
-          echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
+          QT_BASE=${Qt5_Dir}/../..
           echo "" > ${IOS_CONFIG}
           ${{ github.workspace }}/ios/distribute.sh -mqgis
 
