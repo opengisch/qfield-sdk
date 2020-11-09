@@ -140,7 +140,8 @@ function build_qgis() {
   try $MAKESMP install
 
   # Why it is not copied by CMake?
-  try  cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
+  try cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
+  try cp $BUILD_PATH/qgis/build-$ARCH/src/analysis/qgis_analysis.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_analysis.framework/Headers/
   try cp $BUILD_PATH/qgis/build-$ARCH/src/quickgui/qgis_quick.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_quick.framework/Headers/
   try cp $BUILD_qgis/src/quickgui/plugin/qgsquickplugin.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_quick.framework/Headers/
 
