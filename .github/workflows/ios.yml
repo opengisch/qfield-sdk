@@ -20,11 +20,9 @@ jobs:
         include:
           - qt-version: '5.15.1'
             ios-deployment-target: '12.0'
-            ios-deployment-architecture: "arm64 x86_64"
 
     env:
       IOS_MIN_SDK_VERSION: ${{ matrix.ios-deployment-target }}
-      ARCHES: ${{ matrix.ios-deployment-architecture }}
       ROOT_OUT_PATH: ${{ github.workspace }}/build
       OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
       QT_BASE: ${{ github.workspace }}/Qt/${{ matrix.qt-version }}
@@ -57,6 +55,8 @@ jobs:
 
       - name: 🔨 Build Sdk
         run: |
+          export ARCHES=("arm64" "x86_64")
+          echo "ARCHES=${ARCHES}" >> $GITHUB_ENV
           echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
           echo "" > ${IOS_CONFIG}
           ${{ github.workspace }}/ios/distribute.sh -mqgis
@@ -74,7 +74,7 @@ jobs:
       - name: 📦 Upload Sdk in Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
+          name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ github.run_number }}.zip
           path: ${{ github.workspace }}/OSGeo4I.zip
 
       - name: 🚀 Create Release
@@ -96,5 +96,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/OSGeo4I.zip
-          asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
+          asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ github.run_number }}.zip
           asset_content_type: application/zip

@@ -19,11 +19,11 @@ else
 fi
 
 if [ "X$ROOT_OUT_PATH" == "X" ]; then
-  error "you need ROOT_OUT_PATH argument in config.conf"
+  error "you need ROOT_OUT_PATH argument in config.conf or as environment variable"
 fi
 
 if [ "X$QT_VERSION" == "X" ]; then
-  error "you need QT_VERSION argument in config.conf"
+  error "you need QT_VERSION argument in config.conf or as environment variable"
 fi
 
 # Paths
@@ -66,6 +66,12 @@ SED="sed -i ''"
 AUTORECONF=$(which autoreconf)
 if [ "X$AUTORECONF" == "X" ]; then
   echo "Error: you need autoreconf installed (brew install automake)."
+  exit 1
+fi
+
+SHTOOL=$(which shtool)
+if [ "X$SHTOOL" == "X" ]; then
+  echo "Error: you need shtool installed (brew install shtool)."
   exit 1
 fi
 
