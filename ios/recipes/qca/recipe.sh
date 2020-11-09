@@ -65,6 +65,7 @@ function build_qca() {
   -DOSX_FRAMEWORK=OFF \
   -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=TRUE \
   -DLIBRARY_TYPE=STATIC \
+  -DBUILD_SHARED_LIBS=OFF \
   $BUILD_qca
  try $MAKESMP install
 
