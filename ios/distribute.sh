@@ -170,6 +170,9 @@ function push_arm() {
   export OLD_TOOLCHAIN_PREFIX=$TOOLCHAIN_PREFIX
   export OLD_CMAKECMD=$CMAKECMD
 
+  export PLATFORM="Unknown"
+  export SYSROOT="/Unknown"
+
   if [ "$ARCH" == "i386" ] || [ "$ARCH" == "x86_64" ]; then
       SDK="iphonesimulator"
       if [ "$ARCH" == "x86_64" ]; then
@@ -188,6 +191,8 @@ function push_arm() {
       VERSION_MIN="-miphoneos-version-min=${IOS_MIN_SDK_VERSION}"
   fi
 
+  info "SDK is ${SDK}"
+
   QT_PATH="$QT_BASE/ios"
   # Test QT libraries are compiled for this architecture
   QT_ARCHS=`lipo -archs ${QT_PATH}/lib/libQt5Core.a`
@@ -198,6 +203,8 @@ function push_arm() {
 
   export PLATFORM=${PLATFORM}
   export SYSROOT="$(xcrun --sdk $SDK --show-sdk-path)"
+  info "PLATFORM is ${PLATFORM}"
+  info "SYSROOT is ${SYSROOT}"
   if [ ! -d $SYSROOT ]; then
     error "unable to locate SDK $SDK"
     exit 1;

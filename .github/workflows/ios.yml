@@ -58,7 +58,7 @@ jobs:
           echo "export ARCHES=("arm64" "x86_64")" > ${IOS_SCRIPT}/${IOS_CONFIG}
           echo "export QT_BASE=${Qt5_Dir}/../" >> ${IOS_SCRIPT}/${IOS_CONFIG}
           cat ${IOS_SCRIPT}/${IOS_CONFIG}
-          ${IOS_SCRIPT}/distribute.sh -mqgis
+          ${IOS_SCRIPT}/distribute.sh -mexpat
 
       - name: 🔨 Copy ios cmake toolchain to sdk
         run: |
