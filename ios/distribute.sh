@@ -679,6 +679,7 @@ function run_postbuild() {
 }
 
 function run() {
+  info "Run for ARCHES ${ARCHES}"
   for ARCH in ${ARCHES[@]}; do
     cd ${ROOT_PATH}
     STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/$ARCH"
