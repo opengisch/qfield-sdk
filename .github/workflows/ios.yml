@@ -56,7 +56,6 @@ jobs:
       - name: 🔨 Build Sdk
         run: |
           ARCHES=("arm64" "x86_64")
-          echo "ARCHES=${ARCHES}" >> $GITHUB_ENV
           echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
           echo "" > ${IOS_CONFIG}
           ${{ github.workspace }}/ios/distribute.sh -mqgis
