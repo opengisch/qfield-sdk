@@ -55,8 +55,9 @@ jobs:
 
       - name: 🔨 Build Sdk
         run: |
-          echo "QT_BASE=${Qt5_Dir}/../.." >> $GITHUB_ENV
           echo "export ARCHES=("arm64" "x86_64")" > ${IOS_SCRIPT}/${IOS_CONFIG}
+          echo "export QT_BASE=${Qt5_Dir}/../.." >> ${IOS_SCRIPT}/${IOS_CONFIG}
+          cat ${IOS_SCRIPT}/${IOS_CONFIG}
           ${IOS_SCRIPT}/distribute.sh -mqgis
 
       - name: 🔨 Copy ios cmake toolchain to sdk
