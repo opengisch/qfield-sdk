@@ -24,7 +24,7 @@ if [ ! -d $QT ]; then
   error "The root QT directory '$QT' not found. missing QT_BASE in config.conf?"
 fi
 
-STAGE_DIR=$ROOT_OUT_PATH/stage
+STAGE_DIR=$ROOT_OUT_PATH/OSGeo4I
 if [ ! -d $STAGE_DIR ]; then
   error "The root STAGE_DIR directory '$STAGE_DIR' not found. build first"
 fi

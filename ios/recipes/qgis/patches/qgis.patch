@@ -1,0 +1,13 @@
+diff --git a/src/analysis/CMakeLists.txt b/src/analysis/CMakeLists.txt
+index 8a45e2229f..2c773ccd65 100644
+--- a/src/analysis/CMakeLists.txt
++++ b/src/analysis/CMakeLists.txt
+@@ -456,7 +456,7 @@ ENDIF(HAVE_OPENCL)
+ #############################################################
+ # qgis_analysis library
+
+-ADD_LIBRARY(qgis_analysis SHARED ${QGIS_ANALYSIS_SRCS} ${QGIS_ANALYSIS_HDRS})
++ADD_LIBRARY(qgis_analysis ${LIBRARY_TYPE} ${QGIS_ANALYSIS_SRCS} ${QGIS_ANALYSIS_HDRS})
+
+ GENERATE_EXPORT_HEADER(
+    qgis_analysis

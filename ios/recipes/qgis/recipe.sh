@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # version of your package
-VERSION_qgis=3.16
+VERSION_qgis=610703c59d6e487687287c5a34ab56c2a87421d9
 
 # dependencies of this recipe
-DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain geodiff)
+DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain geodiff exiv2)
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/4fe3d2f4e6032e502b10725ad3cd78c18f6a739c.tar.gz
+URL_qgis=https://github.com/qgis/QGIS/archive/${VERSION_qgis}.tar.gz
 
 # md5 of the package
-MD5_qgis=470a24620cfc9df3f1883cf4e9ec53e2
+MD5_qgis=dea911cf0beea4545450f789110ffc9e
 
 # default build path
 BUILD_qgis=$BUILD_PATH/qgis/$(get_directory $URL_qgis)
@@ -32,7 +32,8 @@ function prebuild_qgis() {
   then
     echo "\$O4iOS_qgis_DIR is not empty, manually patch your files if needed!"
   else
-    try patch -p1 < $RECIPE_qgis/patches/std++11.patch
+    try patch -p1 < $RECIPE_qgis/patches/qgis.patch
+    try patch -p1 < $RECIPE_qgis/patches/qgis-printer.patch
   fi
 
   touch .patched
@@ -55,6 +56,7 @@ function build_qgis() {
 
   try ${CMAKECMD} \
     -DCMAKE_DISABLE_FIND_PACKAGE_HDF5=TRUE \
+    -DCMAKE_DISABLE_FIND_PACKAGE_ZSTD=TRUE \
     -DWITH_DESKTOP=OFF \
     -DDISABLE_DEPRECATED=ON \
     -DWITH_QTWEBKIT=OFF \
@@ -102,7 +104,7 @@ function build_qgis() {
     -DWITH_QT5SERIALPORT=OFF \
     -DWITH_BINDINGS=OFF \
     -DWITH_INTERNAL_SPATIALITE=OFF \
-    -DWITH_ANALYSIS=OFF \
+    -DWITH_ANALYSIS=ON \
     -DWITH_GRASS=OFF \
     -DWITH_GEOREFERENCER=OFF \
     -DWITH_QTMOBILITY=OFF \
@@ -112,6 +114,8 @@ function build_qgis() {
     -DENABLE_TESTS=OFF \
     -DEXPAT_INCLUDE_DIR=$STAGE_PATH/include \
     -DEXPAT_LIBRARY=$STAGE_PATH/lib/libexpat.a \
+    -DEXIV2_INCLUDE_DIR=$STAGE_PATH/include \
+    -DEXIV2_LIBRARY=$STAGE_PATH/lib/libexiv2.a \
     -DWITH_INTERNAL_QWTPOLAR=OFF \
     -DWITH_QWTPOLAR=OFF \
     -DWITH_GUI=OFF \
@@ -136,7 +140,8 @@ function build_qgis() {
   try $MAKESMP install
 
   # Why it is not copied by CMake?
-  try  cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
+  try cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
+  try cp $BUILD_PATH/qgis/build-$ARCH/src/analysis/qgis_analysis.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_analysis.framework/Headers/
   try cp $BUILD_PATH/qgis/build-$ARCH/src/quickgui/qgis_quick.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_quick.framework/Headers/
   try cp $BUILD_qgis/src/quickgui/plugin/qgsquickplugin.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_quick.framework/Headers/
 

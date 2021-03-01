@@ -2,7 +2,7 @@
 
 # version of your package
 # NOTE: if changed, update also qgis's recipe
-VERSION_geos=3.7.2
+VERSION_geos=3.8.1
 
 # dependencies of this recipe
 DEPS_geos=()
@@ -11,7 +11,7 @@ DEPS_geos=()
 URL_geos=http://download.osgeo.org/geos/geos-${VERSION_geos}.tar.bz2
 
 # md5 of the package
-MD5_geos=8caa4d19d311c1a78feb2f57505dc0e3
+MD5_geos=9d25df02a2c4fcc5a59ac2fb3f0bd977
 
 # default build path
 BUILD_geos=$BUILD_PATH/geos/$(get_directory $URL_geos)
@@ -32,6 +32,8 @@ function prebuild_geos() {
   try cp $ROOT_OUT_PATH/.packages/config.sub $BUILD_geos
   try cp $ROOT_OUT_PATH/.packages/config.guess $BUILD_geos
 
+  try patch -p1 < $RECIPE_geos/patches/geos.patch
+
   touch .patched
 }
 
@@ -50,9 +52,10 @@ function build_geos() {
 
   try ${CMAKECMD} \
     -DANDROID=OFF \
-    -DGEOS_ENABLE_TESTS=OFF \
     -DIOS=TRUE \
-    -DGEOS_BUILD_SHARED=FALSE \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTING=OFF \
+    -DDISABLE_GEOS_INLINE=ON \
     $BUILD_geos
 
   echo '#define GEOS_SVN_REVISION 0' > $BUILD_PATH/geos/build-$ARCH/geos_svn_revision.h

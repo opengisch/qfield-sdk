@@ -1,0 +1,100 @@
+name: 📱 iOs Sdk
+
+on:
+  push:
+    branches:
+      - master
+      - ci
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  BuildSdk:
+
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        qt-version: ['5.15.1']
+        ios-deployment-architecture: ['arm64', 'x86_64']
+        include:
+          - qt-version: '5.15.1'
+            ios-deployment-target: '12.0'
+
+    env:
+      IOS_MIN_SDK_VERSION: ${{ matrix.ios-deployment-target }}
+      ROOT_OUT_PATH: ${{ github.workspace }}/build
+      OSGeo4I_PATH: ${{ github.workspace }}/build/OSGeo4I
+      QT_VERSION: ${{ matrix.qt-version }}
+      IOS_CONFIG: ios.config.conf
+      IOS_SCRIPT: ${{ github.workspace }}/ios/
+      ARCHES: ${{ matrix.ios-deployment-architecture }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: ⬆️ Install Build Dependencies
+        run: |
+          brew install bison flex automake shtool
+          echo "/usr/local/opt/flex/bin" >> $GITHUB_PATH
+          echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
+
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}
+          key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios
+
+      - name: ⬆️ Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: ${{ matrix.qt-version }}
+          target: ios
+          # Create $GITHUB_WORKSPACE/Qt/5.15.1/ios
+          dir: ${{ github.workspace }}
+
+      - name: 🔨 Build Sdk
+        run: |
+          echo "export QT_BASE=${Qt5_Dir}/../" > ${IOS_SCRIPT}/${IOS_CONFIG}
+          cat ${IOS_SCRIPT}/${IOS_CONFIG}
+          ${IOS_SCRIPT}/distribute.sh -mqgis
+
+      - name: 🔨 Copy ios cmake toolchain to sdk
+        run: |
+          mkdir -p ${{ env.OSGeo4I_PATH }}/cmake/
+          cp ${{ github.workspace }}/ios/tools/ios.toolchain.cmake ${{ env.OSGeo4I_PATH }}/cmake/
+
+      - name: 📦 Zip sdk
+        run: |
+          cd ${{ env.ROOT_OUT_PATH }}
+          zip -r ${{ github.workspace }}/OSGeo4I.zip OSGeo4I
+
+      - name: 📦 Upload Sdk in Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
+          path: ${{ github.workspace }}/OSGeo4I.zip
+
+      - name: 🚀 Create Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+
+      - name: 🚀 Upload Release Asset
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/OSGeo4I.zip
+          asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
+          asset_content_type: application/zip

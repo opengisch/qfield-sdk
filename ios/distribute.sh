@@ -19,21 +19,17 @@ else
 fi
 
 if [ "X$ROOT_OUT_PATH" == "X" ]; then
-  error "you need ROOT_OUT_PATH argument in config.conf"
-fi
-
-if [ "X$SDK_VERSION" == "X" ]; then
-  error "you need SDK_VERSION argument in config.conf"
+  error "you need ROOT_OUT_PATH argument in config.conf or as environment variable"
 fi
 
 if [ "X$QT_VERSION" == "X" ]; then
-  error "you need QT_VERSION argument in config.conf"
+  error "you need QT_VERSION argument in config.conf or as environment variable"
 fi
 
 # Paths
 ROOT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-STAGE_PATH="${ROOT_OUT_PATH}/stage/$ARCH"
-NATIVE_STAGE_PATH="${ROOT_OUT_PATH}/stage/native"
+STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/$ARCH"
+NATIVE_STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/native"
 RECIPES_PATH="$ROOT_PATH/recipes"
 BUILD_PATH="${ROOT_OUT_PATH}/build"
 LIBS_PATH="${ROOT_OUT_PATH}/build/libs"
@@ -70,6 +66,12 @@ SED="sed -i ''"
 AUTORECONF=$(which autoreconf)
 if [ "X$AUTORECONF" == "X" ]; then
   echo "Error: you need autoreconf installed (brew install automake)."
+  exit 1
+fi
+
+SHTOOL=$(which shtool)
+if [ "X$SHTOOL" == "X" ]; then
+  echo "Error: you need shtool installed (brew install shtool)."
   exit 1
 fi
 
@@ -168,6 +170,9 @@ function push_arm() {
   export OLD_TOOLCHAIN_PREFIX=$TOOLCHAIN_PREFIX
   export OLD_CMAKECMD=$CMAKECMD
 
+  export PLATFORM="Unknown"
+  export SYSROOT="/Unknown"
+
   if [ "$ARCH" == "i386" ] || [ "$ARCH" == "x86_64" ]; then
       SDK="iphonesimulator"
       if [ "$ARCH" == "x86_64" ]; then
@@ -186,6 +191,8 @@ function push_arm() {
       VERSION_MIN="-miphoneos-version-min=${IOS_MIN_SDK_VERSION}"
   fi
 
+  info "SDK is ${SDK}"
+
   QT_PATH="$QT_BASE/ios"
   # Test QT libraries are compiled for this architecture
   QT_ARCHS=`lipo -archs ${QT_PATH}/lib/libQt5Core.a`
@@ -196,6 +203,8 @@ function push_arm() {
 
   export PLATFORM=${PLATFORM}
   export SYSROOT="$(xcrun --sdk $SDK --show-sdk-path)"
+  info "PLATFORM is ${PLATFORM}"
+  info "SYSROOT is ${SYSROOT}"
   if [ ! -d $SYSROOT ]; then
     error "unable to locate SDK $SDK"
     exit 1;
@@ -677,9 +686,10 @@ function run_postbuild() {
 }
 
 function run() {
+  info "Run for ARCHES ${ARCHES}"
   for ARCH in ${ARCHES[@]}; do
     cd ${ROOT_PATH}
-    STAGE_PATH="${ROOT_OUT_PATH}/stage/$ARCH"
+    STAGE_PATH="${ROOT_OUT_PATH}/OSGeo4I/$ARCH"
     run_prepare
     run_source_modules
     run_get_packages
