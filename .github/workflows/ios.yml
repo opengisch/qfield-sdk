@@ -45,7 +45,7 @@ jobs:
           key: cache-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-${{ github.sha }}
           restore-keys: |
             cache-${{ matrix.ios-deployment-architecture }}-${{ github.ref }}-
-            cache-${{ github.ref }}-  # TODO: remove
+            cache-${{ github.ref }}-
             cache-${{ matrix.ios-deployment-architecture }}-refs/heads/master-
 
       - name: ⬆️ Install Build Dependencies
