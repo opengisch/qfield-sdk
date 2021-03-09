@@ -4,7 +4,7 @@
 DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain geodiff exiv2)
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/release-3_18.zip
+URL_qgis=https://github.com/qgis/QGIS/archive/release-3_18.tar.gz
 
 # md5 of the package
 MD5_qgis=9b90b3d0ea5abcca613bd7ef938cb077
