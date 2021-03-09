@@ -131,7 +131,7 @@ function build_qgis() {
     -DWITH_QT5SERIALPORT=OFF \
     -DWITH_QTMOBILITY=OFF \
     -DWITH_QTWEBKIT=OFF \
-    -DWITH_QUICK=ON \
+    -DWITH_QUICK=OFF \
     -DWITH_QWTPOLAR=OFF \
     -DQGIS_MACAPP_BUNDLE=-1 \
     $BUILD_qgis

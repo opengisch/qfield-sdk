@@ -16,6 +16,7 @@ jobs:
 
     runs-on: macOS-latest
     strategy:
+      fail-fast: false
       matrix:
         qt-version: ['5.15.1']
         ios-deployment-architecture: ['arm64', 'x86_64']
