@@ -5,10 +5,11 @@ on:
     branches:
       - master
       - ci
+    tags:
   pull_request:
     branches:
       - master
-  tags:
+
 
 jobs:
   BuildSdk:
