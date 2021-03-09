@@ -5,10 +5,10 @@ on:
     branches:
       - master
       - ci
-
   pull_request:
     branches:
       - master
+  tags:
 
 jobs:
   BuildSdk:
@@ -42,7 +42,7 @@ jobs:
 
       - name: Cache Qt
         id: cache-qt
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ${{ github.workspace }}
           key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios

@@ -66,6 +66,7 @@ function build_qgis() {
     -DEXPAT_INCLUDE_DIR=$STAGE_PATH/include \
     -DEXPAT_LIBRARY=$STAGE_PATH/lib/libexpat.a \
     -DFLEX_EXECUTABLE=`which flex` \
+    -DFORCE_STATIC_LIBS=TRUE \
     -DFREEXL_LIBRARY=$STAGE_PATH/lib/libfreexl.a \
     -DGDAL_CONFIG=$STAGE_PATH/bin/gdal-config \
     -DGDAL_CONFIG_PREFER_FWTOOLS_PAT=/bin_safe \
@@ -132,7 +133,6 @@ function build_qgis() {
     -DWITH_QTWEBKIT=OFF \
     -DWITH_QUICK=ON \
     -DWITH_QWTPOLAR=OFF \
-    -FORCE_STATIC_LIBS=TRUE \
     -DQGIS_MACAPP_BUNDLE=-1 \
     $BUILD_qgis
 
