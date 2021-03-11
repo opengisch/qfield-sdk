@@ -12,7 +12,7 @@ on:
 
 
 jobs:
-  BuildSdk:
+  build-sdk:
 
     runs-on: macOS-latest
     strategy:
@@ -90,6 +90,11 @@ jobs:
           name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
           path: ${{ github.workspace }}/OSGeo4I.zip
 
+
+  create-release:
+    needs: build-sdk
+    runs-on: macOS-latest
+    steps:
       - name: 🚀 Create Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         id: create_release
@@ -100,14 +105,27 @@ jobs:
           tag_name: ${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
 
-      - name: 🚀 Upload Release Asset
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/OSGeo4I.zip
-          asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}.zip
-          asset_content_type: application/zip
+  publish-sdk:
+    needs: create-release
+    runs-on: macOS-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ needs.build-sdk.matrix }}
+
+      steps:
+        - name: Download
+          uses: actions/download-artifact@v2
+          with:
+            name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}-${{ github.run_number }}.zip
+
+        - name: 🚀 Upload Release Asset
+          if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+          id: upload-release-asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ${{ github.workspace }}/OSGeo4I.zip
+            asset_name: OSGeo4I-Qt${{ matrix.qt-version }}-${{ matrix.ios-deployment-architecture }}.zip
+            asset_content_type: application/zip
