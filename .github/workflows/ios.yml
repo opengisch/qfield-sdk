@@ -44,8 +44,8 @@ jobs:
           # The branch or tag ref that triggered the workflow run. For branches this in the format refs/heads/<branch_name>, and for tags it is refs/tags/<tag_name>
           key: cache-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-${{ github.sha }}
           restore-keys: |
-            cache-${{ matrix.ios-deployment-architecture }}-${{ github.ref }}-
-            cache-${{ matrix.ios-deployment-architecture }}-refs/heads/master-
+            cache-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-
+            cache-refs/heads/master-${{ matrix.ios-deployment-architecture }}-
 
       - name: ⬆️ Install Build Dependencies
         run: |
