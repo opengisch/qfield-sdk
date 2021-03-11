@@ -110,7 +110,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
       fail-fast: false
-      matrix: ${{ needs.build-sdk.matrix }}
+      matrix: ${{ needs.build-sdk.strategy.matrix }}
 
     steps:
       - name: Download
