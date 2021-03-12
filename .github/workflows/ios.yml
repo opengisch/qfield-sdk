@@ -97,8 +97,8 @@ jobs:
 
       - name: 🚀 Create Release
         uses: ncipollo/release-action@v1
-          with:
-            allowUpdates: true
-            artifacts: ${{ env.ZIP_NAME }}
-            artifactContentType: application/zip
-            token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          allowUpdates: true
+          artifacts: ${{ env.ZIP_NAME }}
+          artifactContentType: application/zip
+          token: ${{ secrets.GITHUB_TOKEN }}
