@@ -95,6 +95,7 @@ jobs:
       - name: 🚀 Create Release
         uses: ncipollo/release-action@v1
         with:
+          tag: ${{ github.run_number }}
           allowUpdates: true
           artifacts: ${{ env.ZIP_NAME }}
           artifactContentType: application/zip
