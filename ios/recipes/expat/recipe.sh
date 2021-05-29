@@ -7,7 +7,7 @@ VERSION_expat=2.4.1
 DEPS_expat=()
 
 # url of the package
-URL_expat=https://github.com/libexpat/libexpat/releases/download/R_$(echo $VERSION_expat | sed -r 's/\./_/g')/expat-$VERSION_expat.tar.gz
+URL_expat=https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-$VERSION_expat.tar.gz
 
 # md5 of the package
 MD5_expat=8738ef9ed1c5dcc03207286ea84f4299
