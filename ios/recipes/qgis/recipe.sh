@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # dependencies of this recipe
-DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain exiv2 gsl)
+DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain exiv2)
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/a05921a940fc8c89ec506ef33cf9dfe8deedbb4e.tar.gz
+URL_qgis=https://github.com/qgis/QGIS/archive/1975368d97ee3e9674a0c8ebe6ce16633f569dc7.tar.gz
 
 # md5 of the package
-MD5_qgis=2d05093e6232abf8586e51ab4744dc54
+MD5_qgis=0e1dbfb7bbba8e545ec7fcf38cbf2504
 
 # default build path
 BUILD_qgis=$BUILD_PATH/qgis/$(get_directory $URL_qgis)
@@ -121,7 +121,7 @@ function build_qgis() {
     -DWITH_BINDINGS=OFF \
     -DWITH_DESKTOP=OFF \
     -DWITH_EPT=OFF \
-    -DWITH_GEOREFERENCER=OFF \
+    -DWITH_GSL=OFF \
     -DWITH_GRASS=OFF \
     -DWITH_GUI=OFF \
     -DWITH_INTERNAL_QWTPOLAR=OFF \
