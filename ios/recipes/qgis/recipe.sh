@@ -143,9 +143,6 @@ function build_qgis() {
   try cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
   try cp $BUILD_PATH/qgis/build-$ARCH/src/analysis/qgis_analysis.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_analysis.framework/Headers/
 
-  # we need images too
-  try cp -R $BUILD_qgis/src/quickgui/images ${STAGE_PATH}/QGIS.app/Contents/Resources/images/QgsQuick
-
   pop_arm
 }
 
