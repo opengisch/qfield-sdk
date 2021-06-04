@@ -4,10 +4,10 @@
 DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain exiv2)
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/24368627ea2f8365bef5ed9c7d019594fc78cb9c.tar.gz
+URL_qgis=https://github.com/qgis/QGIS/archive/1975368d97ee3e9674a0c8ebe6ce16633f569dc7.tar.gz
 
 # md5 of the package
-MD5_qgis=b15181f6827ee7987ca5c271f24ea656
+MD5_qgis=0e1dbfb7bbba8e545ec7fcf38cbf2504
 
 # default build path
 BUILD_qgis=$BUILD_PATH/qgis/$(get_directory $URL_qgis)
@@ -121,7 +121,7 @@ function build_qgis() {
     -DWITH_BINDINGS=OFF \
     -DWITH_DESKTOP=OFF \
     -DWITH_EPT=OFF \
-    -DWITH_GEOREFERENCER=OFF \
+    -DWITH_GSL=OFF \
     -DWITH_GRASS=OFF \
     -DWITH_GUI=OFF \
     -DWITH_INTERNAL_QWTPOLAR=OFF \
@@ -134,6 +134,7 @@ function build_qgis() {
     -DWITH_QUICK=OFF \
     -DWITH_QWTPOLAR=OFF \
     -DQGIS_MACAPP_BUNDLE=-1 \
+    -DWITH_AUTH=OFF \
     $BUILD_qgis
 
   try $MAKESMP install
@@ -141,9 +142,6 @@ function build_qgis() {
   # Why it is not copied by CMake?
   try cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
   try cp $BUILD_PATH/qgis/build-$ARCH/src/analysis/qgis_analysis.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_analysis.framework/Headers/
-
-  # we need images too
-  try cp -R $BUILD_qgis/src/quickgui/images ${STAGE_PATH}/QGIS.app/Contents/Resources/images/QgsQuick
 
   pop_arm
 }

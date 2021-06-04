@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # version of your package
-VERSION_expat=2.0.1
+VERSION_expat=2.4.1
 
 # dependencies of this recipe
 DEPS_expat=()
 
 # url of the package
-URL_expat=http://freefr.dl.sourceforge.net/project/expat/expat/$VERSION_expat/expat-${VERSION_expat}.tar.gz
+URL_expat=https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-$VERSION_expat.tar.gz
 
 # md5 of the package
-MD5_expat=ee8b492592568805593f81f8cdf2a04c
+MD5_expat=8738ef9ed1c5dcc03207286ea84f4299
 
 # default build path
 BUILD_expat=$BUILD_PATH/expat/$(get_directory $URL_expat)
@@ -30,8 +30,6 @@ function prebuild_expat() {
 
   try cp $ROOT_OUT_PATH/.packages/config.sub $BUILD_expat/conftools
   try cp $ROOT_OUT_PATH/.packages/config.guess $BUILD_expat/conftools
-
-  try patch -p1 < $RECIPE_expat/patches/readfilemap.patch
 
   touch .patched
 }

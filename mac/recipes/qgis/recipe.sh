@@ -7,11 +7,10 @@ VERSION_qgis=3.16
 DEPS_qgis=()
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/release-3_18.zip
+URL_qgis=https://github.com/qgis/QGIS/archive/a05921a940fc8c89ec506ef33cf9dfe8deedbb4e.tar.gz
 
 # md5 of the package
-MD5_qgis=9b90b3d0ea5abcca613bd7ef938cb077
-
+MD5_qgis=2d05093e6232abf8586e51ab4744dc54
 # default build path
 BUILD_qgis=$BUILD_PATH/qgis/$(get_directory $URL_qgis)
 
