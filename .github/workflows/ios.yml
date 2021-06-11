@@ -50,8 +50,7 @@ jobs:
 
       - name: ⬆️ Install Build Dependencies
         run: |
-          brew install bison flex automake shtool gtk-doc gnu-sed
-          ln -s /usr/local/bin/gsed /usr/local/bin/sed
+          brew install bison flex automake shtool gtk-doc
           echo "/usr/local/opt/flex/bin" >> $GITHUB_PATH
           echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
 
@@ -102,6 +101,10 @@ jobs:
           artifactContentType: application/zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  update-qfield-sdk:
+    depends: build-sdk
+    runs-on: ubuntu-latest
+      steps:
       - name: Fetch QField source code
         uses: actions/checkout@v2
         with:
