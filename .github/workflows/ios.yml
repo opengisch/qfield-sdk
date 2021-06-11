@@ -100,3 +100,21 @@ jobs:
           artifacts: ${{ env.ZIP_NAME }}
           artifactContentType: application/zip
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch QField source code
+        uses: actions/checkout@v2
+        with:
+          repository: opengisch/QField
+          path: qfield-src
+
+      - name: update SDK version
+        run: |
+          sed -i "s/sdk-version: \['[0-9]+'\]/sdk-version: ${{ github.run_number }}/" qfield-src/.github/workflows/ios.yml
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          path: qfield-src
+          title: Update QField SDK
+          body: |
+            Automatically create from qfield-sdk release https://github.com/opengisch/qfield-sdk/releases/tag/${{ github.run_number }}
