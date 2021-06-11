@@ -102,7 +102,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   update-qfield-sdk:
-    depends: build-sdk
+    needs: build-sdk
     runs-on: ubuntu-latest
     steps:
       - name: Fetch QField source code
