@@ -110,6 +110,7 @@ jobs:
         with:
           repository: opengisch/QField
           path: qfield-src
+          token: ${{ secrets.PAT }}
 
       - name: update SDK version
         run: |
@@ -120,5 +121,6 @@ jobs:
         with:
           path: qfield-src
           title: Update QField SDK
+          token: ${{ secrets.PAT }}
           body: |
             Automatically create from qfield-sdk release https://github.com/opengisch/qfield-sdk/releases/tag/${{ github.run_number }}
