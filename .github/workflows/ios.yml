@@ -109,7 +109,7 @@ jobs:
 
       - name: update SDK version
         run: |
-          sed -i "s/sdk-version: \['[0-9]+'\]/sdk-version: ${{ github.run_number }}/" qfield-src/.github/workflows/ios.yml
+          sed -r -i "s/sdk-version: \['[0-9]+'\]/sdk-version: ['${{ github.run_number }}']/" qfield-src/.github/workflows/ios.yml
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
