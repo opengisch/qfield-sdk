@@ -50,7 +50,8 @@ jobs:
 
       - name: ⬆️ Install Build Dependencies
         run: |
-          brew install bison flex automake shtool gtk-doc
+          brew install bison flex automake shtool gtk-doc gnu-sed
+          ln -s /usr/local/bin/gsed /usr/local/bin/sed
           echo "/usr/local/opt/flex/bin" >> $GITHUB_PATH
           echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
 
