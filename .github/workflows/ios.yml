@@ -118,6 +118,7 @@ jobs:
           sed -r -i "s/sdk-version: \['[0-9]+'\]/sdk-version: ['${{ github.run_number }}']/" .github/workflows/ios.yml
           git config --global user.email "<noreply@github.com"
           git config --global user.name "GitHub"
+          git add .github/workflows/ios.yml
           git commit -m "bump iOS SDK to ${{ github.run_number }}"
 
       - name: Create Pull Request
