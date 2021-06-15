@@ -110,7 +110,7 @@ jobs:
         with:
           repository: opengisch/QField
           path: qfield-src
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GEONINJA_PAT }}
 
       - name: update SDK version
         run: |
