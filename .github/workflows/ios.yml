@@ -126,6 +126,6 @@ jobs:
         with:
           path: qfield-src
           title: Update QField SDK
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GEONINJA_PAT }}
           body: |
             Automatically create from qfield-sdk release https://github.com/opengisch/qfield-sdk/releases/tag/${{ github.run_number }}
