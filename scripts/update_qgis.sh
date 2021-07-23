@@ -12,7 +12,7 @@ fi
 
 platforms=(android ios mac)
 for platform in "${platforms[@]}"; do
-  ${GP}sed -i -r "s@(^URL_qgis.*)/\w+\.(zip|tar.gz)@\1/${SHA}.zip@" ${platform}/recipes/qgis/recipe.sh
+  ${GP}sed -i -r "s@(^URL_qgis.*)/\w+\.(zip|tar.gz)@\1/${SHA}.tar.gz@" ${platform}/recipes/qgis/recipe.sh
 done
 
 URL=$(${GP}sed -n -r 's/^URL_qgis=(.*)$/\1/p' ios/recipes/qgis/recipe.sh)

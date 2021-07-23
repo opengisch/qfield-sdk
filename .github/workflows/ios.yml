@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: ['5.14.2']
+        qt-version: ['5.15.2']
         ios-deployment-architecture: ['arm64', 'x86_64']
         ios-deployment-target: ['12.0']
 
