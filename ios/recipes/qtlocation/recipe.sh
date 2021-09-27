@@ -10,7 +10,7 @@ DEPS_qtlocation=()
 URL_qtlocation=https://github.com/qt/qtlocation/archive/v${VERSION_qtlocation}.tar.gz
 
 # md5 of the package
-MD5_qtlocation=c5068213cf3b8fa6a2ee54a4d82cbecc
+MD5_qtlocation=8073863f82f4c8b26233eb81e02448d5
 
 # default build path
 BUILD_qtlocation=$BUILD_PATH/qtlocation/$(get_directory $URL_qtlocation)
