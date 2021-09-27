@@ -134,7 +134,7 @@ function build_qgis() {
     -DWITH_QUICK=OFF \
     -DWITH_QWTPOLAR=OFF \
     -DQGIS_MACAPP_BUNDLE=-1 \
-    -DWITH_AUTH=OFF \
+    -DWITH_AUTH=ON \
     $BUILD_qgis
 
   try $MAKESMP install
