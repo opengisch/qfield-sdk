@@ -19,11 +19,15 @@ else
 fi
 
 if [ "X$ROOT_OUT_PATH" == "X" ]; then
-  error "you need ROOT_OUT_PATH argument in config.conf or as environment variable"
+  error "you need ROOT_OUT_PATH argument in config.conf"
+fi
+
+if [ "X$SDK_VERSION" == "X" ]; then
+  error "you need SDK_VERSION argument in config.conf"
 fi
 
 if [ "X$QT_VERSION" == "X" ]; then
-  error "you need QT_VERSION argument in config.conf or as environment variable"
+  error "you need QT_VERSION argument in config.conf"
 fi
 
 # Paths
@@ -234,7 +238,7 @@ function push_arm() {
   else
     CMAKECMD="${CMAKECMD} -DCMAKE_BUILD_TYPE=Release"
   fi
-  CMAKECMD="${CMAKECMD} -DENABLE_VISIBILITY=1 -DARCHS=${ARCH} -DPLATFORM=${PLATFORM}"
+  CMAKECMD="${CMAKECMD} -DENABLE_VISIBILITY=0 -DARCHS=${ARCH} -DPLATFORM=${PLATFORM}"
   CMAKECMD="${CMAKECMD} -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH"
   CMAKECMD="${CMAKECMD} -DDEPLOYMENT_TARGET=${IOS_MIN_SDK_VERSION} -DQT_PATH=$QT_PATH"
   CMAKECMD="$CMAKECMD -DCMAKE_PREFIX_PATH:PATH=$QT_PATH;$BUILD_PATH;$STAGE_PATH"
@@ -360,8 +364,14 @@ function run_prepare() {
   test -d $LIBS_PATH || mkdir -p $LIBS_PATH
   test -d $NATIVE_STAGE_PATH || mkdir -p $NATIVE_STAGE_PATH
 
+
   # check arm env
   push_arm
+
+  # copy the build tools
+  mkdir -p $STAGE_PATH/tools
+  cp $ROOT_PATH/tools/ios.toolchain.cmake $STAGE_PATH/tools/
+
   pop_arm
 }
 
@@ -480,8 +490,7 @@ function run_source_modules() {
 function run_get_packages() {
   info "Run get packages"
 
-  if [ ! -d "$ROOT_OUT_PATH/tmp" ]; then
-    try mkdir $ROOT_OUT_PATH/tmp
+  if [ ! -f "$ROOT_OUT_PATH/.packages/config.sub" ]; then
     $WGET $ROOT_OUT_PATH/.packages/config.sub "http://git.savannah.gnu.org/cgit/config.git/plain/config.sub"
     $WGET $ROOT_OUT_PATH/.packages/config.guess "http://git.savannah.gnu.org/cgit/config.git/plain/config.guess"
   fi

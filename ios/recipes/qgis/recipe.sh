@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # dependencies of this recipe
-DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain exiv2)
+DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain exiv2 qtlocation)
 
 # url of the package
 URL_qgis=https://github.com/qgis/QGIS/archive/2755615b9f072180645b6bdc28f65f9f16c80312.tar.gz
@@ -73,14 +73,14 @@ function build_qgis() {
     -DGDAL_CONFIG_PREFER_PATH=$STAGE_PATH/bin \
     -DGDAL_INCLUDE_DIR=$STAGE_PATH/include \
     -DGDAL_LIBRARY=$STAGE_PATH/lib/libgdal.a \
-    -DGDAL_VERSION=3.0.4 \
+    -DGDAL_VERSION=3.1.3 \
     -DGEOSCXX_LIBRARY=$STAGE_PATH/lib/libgeos.a \
     -DGEOS_CONFIG=$STAGE_PATH/bin/geos-config \
     -DGEOS_CONFIG_PREFER_PATH=$STAGE_PATH/bin \
     -DGEOS_INCLUDE_DIR=$STAGE_PATH/include \
     -DGEOS_LIBRARY=$STAGE_PATH/lib/libgeos_c.a \
     -DGEOS_LIB_NAME_WITH_PREFIX=-lgeos_c \
-    -DGEOS_VERSION=3.7.2 \
+    -DGEOS_VERSION=3.9.1 \
     -DICONV_INCLUDE_DIR=$SYSROOT\
     -DICONV_LIBRARY=$SYSROOT/usr/lib/libiconv.tbd \
     -DIOS=TRUE \
@@ -143,10 +143,16 @@ function build_qgis() {
   try cp $BUILD_PATH/qgis/build-$ARCH/src/core/qgis_core.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_core.framework/Headers/
   try cp $BUILD_PATH/qgis/build-$ARCH/src/analysis/qgis_analysis.h ${STAGE_PATH}/QGIS.app/Contents/Frameworks/qgis_analysis.framework/Headers/
 
+  # bundle QGIS's find packages too
+  try mkdir -p $STAGE_PATH/cmake/
+  try cp -Rf $BUILD_qgis/cmake/* $STAGE_PATH/cmake/
+
   pop_arm
 }
 
 # function called after all the compile have been done
 function postbuild_qgis() {
-  :
+  # bundle QGIS's find packages too
+  try mkdir -p $STAGE_PATH/cmake/
+  try cp -Rf $BUILD_qgis/cmake/* $STAGE_PATH/cmake/
 }

@@ -28,8 +28,8 @@ function prebuild_expat() {
     return
   fi
 
-  try cp $ROOT_OUT_PATH/.packages/config.sub $BUILD_expat/conftools
-  try cp $ROOT_OUT_PATH/.packages/config.guess $BUILD_expat/conftools
+  try cp $ROOT_OUT_PATH/.packages/config.sub "$BUILD_expat/conftools/"
+  try cp $ROOT_OUT_PATH/.packages/config.guess "$BUILD_expat/conftools/"
 
   touch .patched
 }
@@ -46,7 +46,10 @@ function build_expat() {
   try mkdir -p $BUILD_PATH/expat/build-$ARCH
   try cd $BUILD_PATH/expat/build-$ARCH
   push_arm
-  try $BUILD_expat/configure --prefix=$STAGE_PATH --host=${TOOLCHAIN_PREFIX} --disable-shared
+  try $BUILD_expat/configure \
+    --prefix=$STAGE_PATH \
+    --host=${TOOLCHAIN_PREFIX} \
+    --disable-shared
   try $MAKESMP install
 
   pop_arm
