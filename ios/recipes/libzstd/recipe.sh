@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # version of your package
-VERSION_libzstd=v1.4.5
+VERSION_libzstd=v1.5.0
 
 # dependencies of this recipe
 DEPS_libzstd=()
@@ -10,7 +10,7 @@ DEPS_libzstd=()
 URL_libzstd=https://github.com/facebook/zstd/archive/${VERSION_libzstd}.zip
 
 # md5 of the package
-MD5_libzstd=beb47f4f92ef69d28400be661cf95c20
+MD5_libzstd=5cd52754ff2359c80b92b88fb39feba9
 
 # default build path
 BUILD_libzstd=$BUILD_PATH/libzstd/$(get_directory $URL_libzstd)
@@ -44,7 +44,7 @@ function build_libzstd() {
 
   # configure
   try $CMAKECMD \
-  -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
+    -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
     -DIOS=TRUE \
     -DBUILD_SHARED_LIBS=FALSE \
     $BUILD_libzstd/build/cmake/
