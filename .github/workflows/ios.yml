@@ -56,9 +56,9 @@ jobs:
 
       - name: Cache Qt
         id: cache-qt
-        uses: actions/cache@v2.1.6
+        uses: pat-s/always-upload-cache@v2.1.5
         with:
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/Qt
           key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios
 
       - name: ⬆️ Install Qt
@@ -68,6 +68,7 @@ jobs:
           target: ios
           # Create $GITHUB_WORKSPACE/Qt/5.15.1/ios
           dir: ${{ github.workspace }}
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
 
       - name: 🔨 Build Sdk
         run: |
