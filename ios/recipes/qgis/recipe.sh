@@ -59,7 +59,6 @@ function build_qgis() {
     -DCMAKE_DISABLE_FIND_PACKAGE_ZSTD=TRUE \
     -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
     -DDISABLE_DEPRECATED=ON \
-    -DENABLE_QT5=ON \
     -DENABLE_TESTS=OFF \
     -DEXIV2_INCLUDE_DIR=$STAGE_PATH/include \
     -DEXIV2_LIBRARY=$STAGE_PATH/lib/libexiv2.a \
@@ -97,7 +96,6 @@ function build_qgis() {
     -DPOSTGRES_LIBRARY=$STAGE_PATH/lib/libpq.a \
     -DPROJ_INCLUDE_DIR=$STAGE_PATH/include \
     -DPROJ_LIBRARY=$STAGE_PATH/lib/libproj.a \
-    -DPYTHON_EXECUTABLE=`which python3` \
     -DProtobuf_INCLUDE_DIRS:PATH=$STAGE_PATH/include \
     -DProtobuf_LIBRARY=$STAGE_PATH/lib/libprotobuf.a \
     -DProtobuf_LITE_LIBRARY=$STAGE_PATH/lib/libprotobuf-lite.a \

@@ -653,9 +653,9 @@ function run_build() {
   cd $BUILD_PATH
 
   for module in $MODULES; do
-    fn="build_$module"
-    shouldbuildfn="shouldbuild_$module"
-    MARKER_FN="$BUILD_PATH/.mark-$module"
+    fn="build_${module}"
+    shouldbuildfn="shouldbuild_${module}"
+    MARKER_FN="$BUILD_PATH/.mark-${module}"
 
     # if the module should be updated, then remove the marker.
     in_array $module "${modules_update[@]}"
@@ -675,9 +675,11 @@ function run_build() {
     # do the build
     if [ "X$DO_BUILD" == "X1" ] || [ ! -f "$MARKER_FN" ]; then
       debug "Call $fn"
+      echo ::group::build ${module}
       rm -f "$MARKER_FN"
       $fn
       touch "$MARKER_FN"
+      echo ::edndgroup::
     else
       debug "Skipped $fn"
     fi

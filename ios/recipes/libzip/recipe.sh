@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # version of your package
-VERSION_libzip=1-5-2
+VERSION_libzip=1.8.0
 
 # dependencies of this recipe
 DEPS_libzip=()
 
 # url of the package
-URL_libzip=https://github.com/nih-at/libzip/archive/rel-${VERSION_libzip}.zip
+URL_libzip=https://github.com/nih-at/libzip/archive/refs/tags/v${VERSION_libzip}.zip
 
 # md5 of the package
-MD5_libzip=e5d917a79134eba8f982f7a32435adc4
+MD5_libzip=62801272c40fb05be101b5f40a52422e
 
 # default build path
 BUILD_libzip=$BUILD_PATH/libzip/$(get_directory $URL_libzip)
