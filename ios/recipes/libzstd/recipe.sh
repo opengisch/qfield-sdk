@@ -31,7 +31,7 @@ function prebuild_libzstd() {
 
 function shouldbuild_libzstd() {
   # If lib is newer than the sourcecode skip build
-  if [ $BUILD_PATH/libzstd/build-$ARCH/lib/libzstd.so -nt $BUILD_libzstd/.patched ]; then
+  if [ $BUILD_PATH/libzstd/build-$ARCH/lib/libzstd.a -nt $BUILD_libzstd/.patched ]; then
     DO_BUILD=0
   fi
 }
