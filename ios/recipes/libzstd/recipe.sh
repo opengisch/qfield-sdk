@@ -45,7 +45,9 @@ function build_libzstd() {
   # configure
   try $CMAKECMD \
   -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
-  $BUILD_libzstd/build/cmake/
+    -DIOS=TRUE \
+    -DBUILD_SHARED_LIBS=FALSE \
+    $BUILD_libzstd/build/cmake/
 
   # try $MAKESMP
   try $MAKESMP install
