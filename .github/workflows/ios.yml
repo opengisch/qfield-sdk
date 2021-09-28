@@ -43,10 +43,10 @@ jobs:
         with:
           path: ${{ github.workspace }}/build
           # The branch or tag ref that triggered the workflow run. For branches this in the format refs/heads/<branch_name>, and for tags it is refs/tags/<tag_name>
-          key: cache-v2-${{ matrix.qt-version }}-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-${{ github.sha }}
+          key: cache-v3-${{ matrix.qt-version }}-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-${{ github.sha }}
           restore-keys: |
-            cache-v2-${{ matrix.qt-version }}-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-
-            cache-v2-${{ matrix.qt-version }}-refs/heads/master-${{ matrix.ios-deployment-architecture }}-
+            cache-v3-${{ matrix.qt-version }}-${{ github.ref }}-${{ matrix.ios-deployment-architecture }}-
+            cache-v3-${{ matrix.qt-version }}-refs/heads/master-${{ matrix.ios-deployment-architecture }}-
 
       - name: ⬆️ Install Build Dependencies
         run: |
