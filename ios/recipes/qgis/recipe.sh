@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # dependencies of this recipe
-DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip qtkeychain exiv2 qtlocation)
+DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip libzstd qtkeychain exiv2 qtlocation)
 
 # url of the package
 URL_qgis=https://github.com/3nids/QGIS/archive/61a34154e0.tar.gz
