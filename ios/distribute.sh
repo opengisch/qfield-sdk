@@ -189,7 +189,7 @@ function push_arm() {
       VERSION_MIN="-mios-simulator-version-min=${IOS_MIN_SDK_VERSION}"
   else
       SDK="iphoneos"
-      PLATFORM="OS"
+      PLATFORM="OS64"
       TARGET="iphoneos-cross"
       VERSION_MIN="-miphoneos-version-min=${IOS_MIN_SDK_VERSION}"
       VERSION_MIN="-miphoneos-version-min=${IOS_MIN_SDK_VERSION}"
