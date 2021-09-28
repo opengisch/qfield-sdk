@@ -45,6 +45,7 @@ function build_libzstd() {
   # configure
   try $CMAKECMD \
   -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
+  -DCMAKE_TOOLCHAIN_FILE=ios.toolchain.cmake -DIOS_PLATFORM=OS \
   $BUILD_libzstd/build/cmake/
 
   # try $MAKESMP
