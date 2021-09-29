@@ -8,10 +8,10 @@ DEPS_libzstd=()
 
 # url of the package
 #URL_libzstd=https://github.com/facebook/zstd/archive/${VERSION_libzstd}.zip
-URL_libzstd=https://github.com/3nids/zstd/archive/9712f9e.zip
+URL_libzstd=https://github.com/3nids/zstd/archive/abc1a91.zip
 
 # md5 of the package
-MD5_libzstd=b78d25cd6203bcf8364f62883d4df50b
+MD5_libzstd=2ef536f79f0dd1e0c7cc9233c86d838d
 
 # default build path
 BUILD_libzstd=$BUILD_PATH/libzstd/$(get_directory $URL_libzstd)
@@ -47,7 +47,7 @@ function build_libzstd() {
   try $CMAKECMD \
     -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
     -DIOS=TRUE \
-    -DBUILD_SHARED_LIBS=FALSE \
+    -DZSTD_BUILD_SHARED=OFF -DZSTD_BUILD_STATIC=ON \
     $BUILD_libzstd/build/cmake/
 
   # try $MAKESMP
