@@ -488,6 +488,7 @@ function run_source_modules() {
 }
 
 function run_get_packages() {
+  echo "::group::Download packages"
   info "Run get packages"
 
   if [ ! -f "$ROOT_OUT_PATH/.packages/config.sub" ]; then
@@ -633,6 +634,7 @@ function run_get_packages() {
         ;;
     esac
   done
+  echo "::endgroup::"
 }
 
 function run_prebuild() {
