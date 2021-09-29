@@ -7,7 +7,8 @@ VERSION_libzstd=v1.5.0
 DEPS_libzstd=()
 
 # url of the package
-URL_libzstd=https://github.com/facebook/zstd/archive/${VERSION_libzstd}.zip
+#URL_libzstd=https://github.com/facebook/zstd/archive/${VERSION_libzstd}.zip
+URL_libzstd=https://github.com/3nids/zstd/archive/6d09eff.zip
 
 # md5 of the package
 MD5_libzstd=5cd52754ff2359c80b92b88fb39feba9
