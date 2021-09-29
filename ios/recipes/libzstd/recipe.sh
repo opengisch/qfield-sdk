@@ -8,10 +8,10 @@ DEPS_libzstd=()
 
 # url of the package
 #URL_libzstd=https://github.com/facebook/zstd/archive/${VERSION_libzstd}.zip
-URL_libzstd=https://github.com/3nids/zstd/archive/6d09eff.zip
+URL_libzstd=https://github.com/3nids/zstd/archive/9712f9e.zip
 
 # md5 of the package
-MD5_libzstd=20820ffe830a6ff8c85451cdf5ffdde9
+MD5_libzstd=b78d25cd6203bcf8364f62883d4df50b
 
 # default build path
 BUILD_libzstd=$BUILD_PATH/libzstd/$(get_directory $URL_libzstd)
