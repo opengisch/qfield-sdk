@@ -609,6 +609,7 @@ function run_get_packages() {
 
     # decompress
     pfilename=$PACKAGES_PATH/$module/$filename
+    echo "::group::Extract $pfilename"
     info "Extract $pfilename"
     case $pfilename in
       *.tar.gz|*.tgz )
@@ -633,6 +634,7 @@ function run_get_packages() {
         fi
         ;;
     esac
+    echo "::endgroup::"
   done
   echo "::endgroup::"
 }
