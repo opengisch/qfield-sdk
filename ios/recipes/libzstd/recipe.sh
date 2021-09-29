@@ -11,7 +11,7 @@ DEPS_libzstd=()
 URL_libzstd=https://github.com/3nids/zstd/archive/6d09eff.zip
 
 # md5 of the package
-MD5_libzstd=5cd52754ff2359c80b92b88fb39feba9
+MD5_libzstd=20820ffe830a6ff8c85451cdf5ffdde9
 
 # default build path
 BUILD_libzstd=$BUILD_PATH/libzstd/$(get_directory $URL_libzstd)
