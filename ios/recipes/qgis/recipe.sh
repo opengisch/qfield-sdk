@@ -4,10 +4,10 @@
 DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip libzstd qtkeychain exiv2 qtlocation)
 
 # url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/d9022691f1a8ac886be71f396c2214ba276e6866.tar.gz
+URL_qgis=https://github.com/qgis/QGIS/archive/b2cac9bc01106d8c5b4771affe6c22cbd4bf1347.tar.gz
 
 # md5 of the package
-MD5_qgis=0e955d163c44e9e07bb88d5cfbde1ea1
+MD5_qgis=35930cb2ecc9e42f0bf88444f2cfc5de
 
 # default build path
 BUILD_qgis=$BUILD_PATH/qgis/$(get_directory $URL_qgis)
