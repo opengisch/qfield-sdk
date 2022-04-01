@@ -36,7 +36,7 @@ jobs:
       CACHE_VERSION: 11
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
           
       - name: Prepare build cache for branch/tag
         # use a fork of actions/cache@v2 to upload cache even when the build or test failed
@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch QField source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: opengisch/QField
           path: qfield-src
