@@ -90,7 +90,7 @@ jobs:
           zip -r ${{ github.workspace }}/${ZIP_NAME} OSGeo4I
 
       - name: 📦 Upload Sdk in Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ${{ github.workspace }}/${{ env.ZIP_NAME }}
 
