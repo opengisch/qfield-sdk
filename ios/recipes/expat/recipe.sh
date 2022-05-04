@@ -49,8 +49,8 @@ function build_expat() {
   try $BUILD_expat/configure \
     --prefix=$STAGE_PATH \
     --host=${TOOLCHAIN_PREFIX} \
-    --disable-shared \
-    --without-tests
+    --disable-shared
+
   try $MAKESMP install
 
   pop_arm
