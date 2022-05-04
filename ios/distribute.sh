@@ -613,7 +613,7 @@ function run_get_packages() {
     info "Extract $pfilename"
     case $pfilename in
       *.tar.gz|*.tgz )
-        try tar --exclude='./tests/testdata' -xzf $pfilename
+        try tar --exclude='./tests/testdata/*' -xzf $pfilename
         root_directory=$(basename $(try tar tzf $pfilename|head -n1))
         if [ "X$root_directory" != "X$directory" ]; then
           mv $root_directory $directory
