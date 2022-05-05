@@ -3,6 +3,8 @@
 # dependencies of this recipe
 DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat postgresql libzip libzstd qtkeychain exiv2 qtlocation)
 
+EXTRACT_OPTIONS_qgis="--exclude='./tests/testdata/*'"
+
 # url of the package
 URL_qgis=https://github.com/qgis/QGIS/archive/refs/tags/final-3_24_2.tar.gz
 

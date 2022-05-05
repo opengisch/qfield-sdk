@@ -518,6 +518,7 @@ function run_get_packages() {
     url=${!url}
     md5="MD5_$module"
     md5=${!md5}
+    extract_options="EXTRACT_OPTIONS_$module"
 
     if [ ! -d "$BUILD_PATH/$module" ]; then
       try mkdir -p $BUILD_PATH/$module
@@ -613,7 +614,7 @@ function run_get_packages() {
     info "Extract $pfilename"
     case $pfilename in
       *.tar.gz|*.tgz )
-        try tar --exclude='./tests/testdata/*' -xzf $pfilename
+        try tar ${extract_options} -xzf $pfilename
         root_directory=$(basename $(try tar tzf $pfilename|head -n1))
         if [ "X$root_directory" != "X$directory" ]; then
           mv $root_directory $directory
