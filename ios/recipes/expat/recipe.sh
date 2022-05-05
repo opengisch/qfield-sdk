@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # version of your package
-VERSION_expat=2.4.1
+VERSION_expat=2.4.8
 
 # dependencies of this recipe
 DEPS_expat=()
 
 # url of the package
-URL_expat=https://github.com/libexpat/libexpat/releases/download/R_2_4_1/expat-$VERSION_expat.tar.gz
+URL_expat=https://github.com/libexpat/libexpat/releases/download/R_${VERSION_expat//\./_}/expat-$VERSION_expat.tar.gz
 
 # md5 of the package
-MD5_expat=8738ef9ed1c5dcc03207286ea84f4299
+MD5_expat=ce5fa3fa4d866d83ab0cfb00bb95b77a
 
 # default build path
 BUILD_expat=$BUILD_PATH/expat/$(get_directory $URL_expat)
@@ -49,7 +49,8 @@ function build_expat() {
   try $BUILD_expat/configure \
     --prefix=$STAGE_PATH \
     --host=${TOOLCHAIN_PREFIX} \
-    --disable-shared
+    --disable-shared \
+    --without-tests
 
   try $MAKESMP install
 
