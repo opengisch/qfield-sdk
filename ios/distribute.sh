@@ -519,6 +519,7 @@ function run_get_packages() {
     md5="MD5_$module"
     md5=${!md5}
     extract_options="EXTRACT_OPTIONS_$module"
+    extract_options=${!extract_options}
 
     if [ ! -d "$BUILD_PATH/$module" ]; then
       try mkdir -p $BUILD_PATH/$module
