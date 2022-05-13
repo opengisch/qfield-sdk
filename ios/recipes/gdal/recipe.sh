@@ -50,6 +50,8 @@ function build_gdal() {
   push_arm
 
   export LDFLAGS="${LDFLAGS} -liconv"
+  export LDFLAGS="${LDFLAGS} -lgeos -framework Security -framework CoreFoundation -framework SystemConfiguration"
+
   export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
 
   GDAL_FLAGS="--disable-shared"
@@ -75,15 +77,15 @@ function build_gdal() {
     --with-geos=$STAGE_PATH/bin/geos-config \
     --with-pg=no \
     --with-expat=$STAGE_PATH \
+    --with-spatialite=yes \
     --with-rename-internal-libtiff-symbols=yes \
     --with-rename-internal-libgeotiff-symbols=yes \
     --with-rename-internal-shapelib-symbols=yes \
     --with-poppler=no \
     --with-podofo=no \
     --with-pdfium=no \
-    --disable-driver-mrf \
-    --with-jpeg=no \
     --with-proj=$STAGE_PATH \
+    --disable-driver-mrf \
     --with-png=internal \
     $GDAL_FLAGS
 
