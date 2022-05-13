@@ -9,7 +9,7 @@ URL_sqlite3=https://sqlite.org/2021/sqlite-autoconf-${URL_sqlite3_BASE}.tar.gz
 MD5_sqlite3=454e0899d99a7b28825db3d807526774
 
 # default build path
-BUILD_sqlite3=$BUILD_PATH/sqlite3/sqlite-autoconf-${VERSION_sqlite3}
+BUILD_sqlite3=$BUILD_PATH/sqlite3/sqlite-autoconf-$URL_sqlite3_BASE
 
 # default recipe path
 RECIPE_sqlite3=$RECIPES_PATH/sqlite3
@@ -52,7 +52,7 @@ function build_sqlite3() {
     --prefix=$STAGE_PATH \
     --host=$TOOLCHAIN_PREFIX \
     --disable-shared \
-    --enable-static \
+    --enable-static
 
   # manual install
   try $MAKESMP install-libLTLIBRARIES
