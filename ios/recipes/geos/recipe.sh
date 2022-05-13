@@ -2,16 +2,16 @@
 
 # version of your package
 # NOTE: if changed, update also qgis's recipe
-VERSION_geos=3.9.1
+VERSION_geos=3.10.2
 
 # dependencies of this recipe
 DEPS_geos=()
 
 # url of the package
-URL_geos=https://github.com/libgeos/geos/archive/${VERSION_geos}.tar.gz
+URL_geos=http://download.osgeo.org/geos/geos-${VERSION_geos}.tar.bz2
 
 # md5 of the package
-MD5_geos=ea4ced8ff19533e8b527b7316d7010bb
+MD5_geos=324258ae27b5d53cd90897435d97cc6a
 
 
 # default build path
@@ -38,7 +38,7 @@ function prebuild_geos() {
 
 function shouldbuild_geos() {
   # If lib is newer than the sourcecode skip build
-  if [ $BUILD_PATH/geos/build-$ARCH/lib/libgeos.a -nt $BUILD_geos/.patched ]; then
+  if [ ${STAGE_PATH}/lib/libgeos.a -nt $BUILD_geos/.patched ]; then
     DO_BUILD=0
   fi
 }
