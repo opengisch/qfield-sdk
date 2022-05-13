@@ -48,7 +48,7 @@ function build_libtasn1() {
   export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
 
   try cd $BUILD_libtasn1
-  try $MAKE autoreconf
+  # try $MAKE autoreconf
 
   try mkdir -p $BUILD_PATH/libtasn1/build-$ARCH
   try cd $BUILD_PATH/libtasn1/build-$ARCH
