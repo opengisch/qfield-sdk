@@ -81,7 +81,7 @@ function build_qgis() {
     -DGEOS_INCLUDE_DIR=$STAGE_PATH/include \
     -DGEOS_LIBRARY=$STAGE_PATH/lib/libgeos_c.a \
     -DGEOS_LIB_NAME_WITH_PREFIX=-lgeos_c \
-    -DGEOS_VERSION=3.9.1 \
+    -DGEOS_VERSION=3.10.2 \
     -DICONV_INCLUDE_DIR=$SYSROOT\
     -DICONV_LIBRARY=$SYSROOT/usr/lib/libiconv.tbd \
     -DIOS=TRUE \
