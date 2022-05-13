@@ -33,7 +33,7 @@ jobs:
       IOS_CONFIG: ios.config.conf
       IOS_SCRIPT: ${{ github.workspace }}/ios/
       ARCHES: ${{ matrix.ios-deployment-architecture }}
-      CACHE_VERSION: 11
+      CACHE_VERSION: 12
 
     steps:
       - uses: actions/checkout@v3
@@ -57,7 +57,7 @@ jobs:
 
       - name: Cache Qt
         id: cache-qt
-        uses: pat-s/always-upload-cache@v2.1.5
+        uses: pat-s/always-upload-cache@v3
         with:
           path: ${{ github.workspace }}/Qt
           key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios
