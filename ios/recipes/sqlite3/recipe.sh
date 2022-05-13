@@ -1,16 +1,12 @@
 #!/bin/bash
 
-# version of your package
-VERSION_sqlite3=3300100
-
-# dependencies of this recipe
-DEPS_sqlite3=()
-
-# url of the package
-URL_sqlite3=https://www.dropbox.com/s/8x1ese8mx0sif3c/sqlite-autoconf-${VERSION_sqlite3}.tar.gz?dl=1
-
-# md5 of the package
-MD5_sqlite3=51252dc6bc9094ba11ab151ba650ff3c
+VERSION_sqlite_MAJOR=3
+VERSION_sqlite_MINOR=35
+VERSION_sqlite_PATCH=2
+VERSION_sqlite3=${VERSION_sqlite_MAJOR}.${VERSION_sqlite_MINOR}.${VERSION_sqlite_PATCH}
+URL_sqlite3_BASE=$(printf "%d%02d%02d00" $VERSION_sqlite_MAJOR $VERSION_sqlite_MINOR $VERSION_sqlite_PATCH)
+URL_sqlite3=https://sqlite.org/2021/sqlite-autoconf-${URL_sqlite3_BASE}.tar.gz
+MD5_sqlite3=454e0899d99a7b28825db3d807526774
 
 # default build path
 BUILD_sqlite3=$BUILD_PATH/sqlite3/sqlite-autoconf-${VERSION_sqlite3}

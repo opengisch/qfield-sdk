@@ -2,18 +2,16 @@
 
 # version of your package
 # NOTE: if changed, update also qgis's recipe
-VERSION_qca=2.1.0
+VERSION_qca=2.3.1
 
 # dependencies of this recipe
 DEPS_qca=()
 
 # url of the package
-# URL_qca=http://delta.affinix.com/download/qca/2.0/qca-${VERSION_qca}.tar.gz
-# URL_qca=http://quickgit.kde.org/?p=qca.git&a=snapshot&h=4f966b0217c10b6fd3c12caf7d2467759fbec7f7&fmt=tgz
 URL_qca=https://github.com/KDE/qca/archive/v${VERSION_qca}.tar.gz
 
 # md5 of the package
-MD5_qca=b1b8ffad920c4cb3c286bcf34a83f76b
+MD5_qca=96c4769d51140e03087266cf705c2b86
 
 # default build path
 BUILD_qca=$BUILD_PATH/qca/$(get_directory $URL_qca)

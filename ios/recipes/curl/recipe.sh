@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# version of your package in ../../../versions.conf
+export VERSION_curl=7.81.0
+export URL_curl=https://github.com/curl/curl/archive/curl-${VERSION_curl//./_}.tar.gz
+export MD5_curl=3b2d1ed46e8f1786a5559179411e48eb
 
 # dependencies of this recipe
 DEPS_curl=()

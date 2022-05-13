@@ -74,7 +74,7 @@ function build_qgis() {
     -DGDAL_CONFIG_PREFER_PATH=$STAGE_PATH/bin \
     -DGDAL_INCLUDE_DIR=$STAGE_PATH/include \
     -DGDAL_LIBRARY=$STAGE_PATH/lib/libgdal.a \
-    -DGDAL_VERSION=3.1.3 \
+    -DGDAL_VERSION=3.5.0 \
     -DGEOSCXX_LIBRARY=$STAGE_PATH/lib/libgeos.a \
     -DGEOS_CONFIG=$STAGE_PATH/bin/geos-config \
     -DGEOS_CONFIG_PREFER_PATH=$STAGE_PATH/bin \
@@ -105,7 +105,7 @@ function build_qgis() {
     -DProtobuf_PROTOC_LIBRARY=$STAGE_PATH/lib/libprotoc.a \
     -DQCA_INCLUDE_DIR=$STAGE_PATH/include/QtCrypto \
     -DQCA_LIBRARY=$STAGE_PATH/lib/libqca-qt5.a \
-    -DQCA_VERSION_STR=2.1.0 \
+    -DQCA_VERSION_STR=2.3.1 \
     -DQTKEYCHAIN_INCLUDE_DIR=$STAGE_PATH/include/qt5keychain \
     -DQTKEYCHAIN_LIBRARY=$STAGE_PATH/lib/libqt5keychain.a \
     -DQT_LRELEASE_EXECUTABLE=`which lrelease` \
