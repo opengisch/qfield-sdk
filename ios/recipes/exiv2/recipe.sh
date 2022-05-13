@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # version of your package
-VERSION_exiv2=0.27.3
+VERSION_exiv2=0.27.5
 
 # dependencies of this recipe
 DEPS_exiv2=(expat iconv)
@@ -10,7 +10,7 @@ DEPS_exiv2=(expat iconv)
 URL_exiv2=https://github.com/Exiv2/exiv2/archive/v${VERSION_exiv2}.tar.gz
 
 # md5 of the package
-MD5_exiv2=652fe107af5b9ba6891b3887a96ed8be
+MD5_exiv2=612b1b9ad1701120aef6ae1b6bab56bf
 
 # default build path
 BUILD_exiv2=$BUILD_PATH/exiv2/$(get_directory $URL_exiv2)

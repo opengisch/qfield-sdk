@@ -1,19 +1,16 @@
 #!/bin/bash
 
 # version of your package
-# VERSION_qtkeychain=0.8.0
-VERSION_qtkeychain=0.9.1
+VERSION_qtkeychain=0.13.2
 
 # dependencies of this recipe
 DEPS_qtkeychain=()
 
 # url of the package
 URL_qtkeychain=https://github.com/frankosterfeld/qtkeychain/archive/v${VERSION_qtkeychain}.tar.gz
-# URL_qtkeychain=https://github.com/hasselmm/qtkeychain/archive/androidkeystore.tar.gz
 
 # md5 of the package
-# MD5_qtkeychain=8ac371cb68aad1582e7b8e7b0b4530cd
-MD5_qtkeychain=e6921de6f256259784f2a9edd1eeb8f5
+MD5_qtkeychain=4622bf9f4bb73fb72ea9eae272c49235
 
 # default build path
 BUILD_qtkeychain=$BUILD_PATH/qtkeychain/$(get_directory $URL_qtkeychain)

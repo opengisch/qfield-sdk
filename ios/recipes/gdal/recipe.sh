@@ -2,16 +2,16 @@
 
 # version of your package
 # NOTE: if changed, update also qgis's recipe
-VERSION_gdal=3.1.3
+VERSION_gdal=3.5.0
 
 # dependencies of this recipe
-DEPS_gdal=(iconv geos postgresql expat)
+DEPS_gdal=(iconv sqlite3 geos postgresql expat proj curl libspatialite)
 
 # url of the package
 URL_gdal=http://download.osgeo.org/gdal/$VERSION_gdal/gdal-${VERSION_gdal}.tar.gz
 
 # md5 of the package
-MD5_gdal=4094633f28a589a7b4b483aa51beb37c
+MD5_gdal=1df31a62405e33eacceddf53a81fc136
 
 # default build path
 BUILD_gdal=$BUILD_PATH/gdal/$(get_directory $URL_gdal)
@@ -84,7 +84,7 @@ function build_gdal() {
     --disable-driver-mrf \
     --with-jpeg=no \
     --with-proj=$STAGE_PATH \
-    --with-png=no \
+    --with-png=internal \
     $GDAL_FLAGS
 
   try $MAKESMP
@@ -101,3 +101,4 @@ function postbuild_gdal() {
     exit 1;
   fi
 }
+

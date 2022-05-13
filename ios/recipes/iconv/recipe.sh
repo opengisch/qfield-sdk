@@ -41,7 +41,7 @@ function prebuild_iconv() {
 
 function shouldbuild_iconv() {
   # If lib is newer than the sourcecode skip build
-  if [ $BUILD_PATH/iconv/build-$ARCH/libcharset/lib/.libs/libcharset.a -nt $BUILD_iconv/.patched ]; then
+  if [ ${STAGE_PATH}/lib/libiconv.a -nt $BUILD_iconv/.patched ]; then
     DO_BUILD=0
   fi
 }
