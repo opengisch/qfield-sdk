@@ -1,16 +1,13 @@
 #!/bin/bash
 
 # version of your package
-VERSION_libtasn1=4.18
+VERSION_libtasn1=4.13
 
 # dependencies of this recipe
 DEPS_libtasn1=()
 
-# url of the package
-URL_libtasn1=https://gitlab.com/gnutls/libtasn1/-/archive/v4.18.0/libtasn1-v4.18.0.tar.gz
-
-# md5 of the package
-MD5_libtasn1=1fcca15fd8a8d674383df74d4afed1f7
+URL_libtasn1=https://gitlab.com/gnutls/libtasn1/-/archive/libtasn1_4_13/libtasn1-libtasn1_4_13.tar.gz
+MD5_libtasn1=349a320d12721227e29a9122bdaddea9
 
 # default build path
 BUILD_libtasn1=$BUILD_PATH/libtasn1/$(get_directory $URL_libtasn1)
@@ -36,7 +33,7 @@ function prebuild_libtasn1() {
 
 function shouldbuild_libtasn1() {
   # If lib is newer than the sourcecode skip build
-  if [ $BUILD_PATH/libtasn1/build-$ARCH/lib/.libs/libtasn1.a -nt $BUILD_libtasn1/.patched ]; then
+  if [ ${STAGE_PATH}/lib/libtasn1.a -nt $BUILD_libtasn1/.patched ]; then
     DO_BUILD=0
   fi
 }
@@ -48,7 +45,7 @@ function build_libtasn1() {
   export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
 
   try cd $BUILD_libtasn1
-  # try $MAKE autoreconf
+  try $MAKE autoreconf
 
   try mkdir -p $BUILD_PATH/libtasn1/build-$ARCH
   try cd $BUILD_PATH/libtasn1/build-$ARCH
