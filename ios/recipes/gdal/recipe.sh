@@ -32,6 +32,8 @@ function prebuild_gdal() {
   try cp $ROOT_OUT_PATH/.packages/config.sub "$BUILD_gdal"
   try cp $ROOT_OUT_PATH/.packages/config.guess "$BUILD_gdal"
 
+  try patch -p1 < $RECIPE_gdal/patches/configure.patch
+
   touch .patched
 }
 
