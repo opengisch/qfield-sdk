@@ -40,7 +40,7 @@ jobs:
           
       - name: Prepare build cache for branch/tag
         # use a fork of actions/cache@v2 to upload cache even when the build or test failed
-        uses: pat-s/always-upload-cache@v2.1.5
+        uses: pat-s/always-upload-cache@v3.0.1
         with:
           path: ${{ github.workspace }}/build
           # The branch or tag ref that triggered the workflow run. For branches this in the format refs/heads/<branch_name>, and for tags it is refs/tags/<tag_name>
@@ -57,7 +57,7 @@ jobs:
 
       - name: Cache Qt
         id: cache-qt
-        uses: pat-s/always-upload-cache@v3
+        uses: pat-s/always-upload-cache@v3.0.1
         with:
           path: ${{ github.workspace }}/Qt
           key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios-v2
