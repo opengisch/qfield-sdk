@@ -60,13 +60,14 @@ jobs:
         uses: pat-s/always-upload-cache@v3
         with:
           path: ${{ github.workspace }}/Qt
-          key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios
+          key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios-v2
 
       - name: ⬆️ Install Qt
         uses: jurplel/install-qt-action@v2
         with:
           version: ${{ matrix.qt-version }}
           target: ios
+          setup-python: 'false'
           # Create $GITHUB_WORKSPACE/Qt/5.15.1/ios
           dir: ${{ github.workspace }}
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
