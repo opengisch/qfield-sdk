@@ -104,7 +104,7 @@ function build_qgis() {
     -DProtobuf_LITE_LIBRARY=$STAGE_PATH/lib/libprotobuf-lite.a \
     -DProtobuf_PROTOC_EXECUTABLE:FILEPATH=$NATIVE_STAGE_PATH/bin/protoc \
     -DProtobuf_PROTOC_LIBRARY=$STAGE_PATH/lib/libprotoc.a \
-    -DQCA_INCLUDE_DIR=$STAGE_PATH/include/QtCrypto \
+    -DQCA_INCLUDE_DIR=$STAGE_PATH/include/Qca-qt5/QtCrypto \
     -DQCA_LIBRARY=$STAGE_PATH/lib/libqca-qt5.a \
     -DQCA_VERSION_STR=2.3.1 \
     -DQTKEYCHAIN_INCLUDE_DIR=$STAGE_PATH/include/qt5keychain \
