@@ -92,6 +92,7 @@ function build_qgis() {
     -DLIBZIP_CONF_INCLUDE_DIR=$STAGE_PATH/include \
     -DLIBZIP_INCLUDE_DIR=$STAGE_PATH/include \
     -DLIBZIP_LIBRARY=$STAGE_PATH/lib/libzip.a \
+    -DNATIVE_CRSSYNC_BIN=/usr/bin/true \
     -DPOSTGRES_CONFIG= \
     -DPOSTGRES_CONFIG_PREFER_PATH= \
     -DPOSTGRES_INCLUDE_DIR=$STAGE_PATH/include \
@@ -118,6 +119,7 @@ function build_qgis() {
     -DWITH_ANALYSIS=ON \
     -DWITH_APIDOC=OFF \
     -DWITH_ASTYLE=OFF \
+    -DWITH_AUTH=ON \
     -DWITH_BINDINGS=OFF \
     -DWITH_DESKTOP=OFF \
     -DWITH_EPT=OFF \
@@ -134,7 +136,6 @@ function build_qgis() {
     -DWITH_QUICK=OFF \
     -DWITH_QWTPOLAR=OFF \
     -DQGIS_MACAPP_BUNDLE=-1 \
-    -DWITH_AUTH=ON \
     $BUILD_qgis
 
   try $MAKESMP install
