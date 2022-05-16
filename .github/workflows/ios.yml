@@ -60,7 +60,8 @@ jobs:
         uses: pat-s/always-upload-cache@v3.0.1
         with:
           path: ${{ github.workspace }}/Qt
-          key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios-v2
+          key: ${{ runner.os }}-QtCache-${{ matrix.qt-version }}-ios-v3
+          setup-python: false
 
       - name: ⬆️ Install Qt
         uses: jurplel/install-qt-action@v2
