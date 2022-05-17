@@ -33,7 +33,7 @@ jobs:
       IOS_CONFIG: ios.config.conf
       IOS_SCRIPT: ${{ github.workspace }}/ios/
       ARCHES: ${{ matrix.ios-deployment-architecture }}
-      CACHE_VERSION: 4
+      CACHE_VERSION: 5
 
     steps:
       - uses: actions/checkout@v3
