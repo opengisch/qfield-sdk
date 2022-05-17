@@ -32,8 +32,8 @@ function prebuild_libspatialite() {
   try cp $ROOT_OUT_PATH/.packages/config.sub "$BUILD_libspatialite"
   try cp $ROOT_OUT_PATH/.packages/config.guess "$BUILD_libspatialite"
 
-  try patch -p1 < $RECIPE_libspatialite/patches/config.patch
-  try patch -p1 < $RECIPE_libspatialite/patches/make.patch
+  # try patch -p1 < $RECIPE_libspatialite/patches/config.patch
+  # try patch -p1 < $RECIPE_libspatialite/patches/make.patch
 
   touch .patched
 }
