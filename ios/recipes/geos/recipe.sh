@@ -2,7 +2,7 @@
 
 # version of your package
 # NOTE: if changed, update also qgis's recipe
-VERSION_geos=3.9.2
+VERSION_geos=3.10.2
 
 # dependencies of this recipe
 DEPS_geos=()
@@ -11,7 +11,7 @@ DEPS_geos=()
 URL_geos=http://download.osgeo.org/geos/geos-${VERSION_geos}.tar.bz2
 
 # md5 of the package
-MD5_geos=e9061461cf207d06f616ff9d98d7f0af
+MD5_geos=324258ae27b5d53cd90897435d97cc6a
 
 
 # default build path

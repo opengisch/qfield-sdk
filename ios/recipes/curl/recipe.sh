@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export VERSION_curl=7.81.0
+export VERSION_curl=7.83.1
 export URL_curl=https://github.com/curl/curl/archive/curl-${VERSION_curl//./_}.tar.gz
-export MD5_curl=3b2d1ed46e8f1786a5559179411e48eb
+export MD5_curl=ecd9366cf4d31bbda84fa8de865aba11
 
 # dependencies of this recipe
 DEPS_curl=()

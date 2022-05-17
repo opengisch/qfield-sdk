@@ -5,7 +5,7 @@
 VERSION_proj=9.0.0
 
 # dependencies of this recipe
-DEPS_proj=()
+DEPS_proj=(sqlite3 curl)
 
 # url of the package
 URL_proj=https://github.com/OSGeo/PROJ/releases/download/$VERSION_proj/proj-$VERSION_proj.tar.gz
@@ -54,15 +54,20 @@ function build_proj() {
 
   try $CMAKECMD \
     -DCMAKE_INSTALL_PREFIX:PATH=$STAGE_PATH \
-    -DPROJ_TESTS=OFF \
-    -DBUILD_LIBPROJ_SHARED=OFF \
+    -DPROJ_CMAKE_SUBDIR=share/cmake/proj4 \
+    -DPROJ_DATA_SUBDIR=share/proj \
+    -DPROJ_INCLUDE_SUBDIR=include \
+    -DBUILD_TESTING=OFF \
+    -DBUILD_SHARED_LIBS=OFF \
     -DEXE_SQLITE3=`which sqlite3` \
     -DBUILD_CCT=OFF \
     -DBUILD_CS2CS=OFF \
     -DBUILD_GEOD=OFF \
     -DBUILD_GIE=OFF \
-    -DBUILD_PROJ=OFF \
     -DBUILD_PROJINFO=OFF \
+    -DBUILD_PROJSYNC=OFF \
+    -DENABLE_TIFF=OFF \
+    -DENABLE_CURL=OFF \
     $BUILD_proj
   try $MAKESMP install
 

@@ -32,43 +32,40 @@ function prebuild_libspatialite() {
   try cp $ROOT_OUT_PATH/.packages/config.sub "$BUILD_libspatialite"
   try cp $ROOT_OUT_PATH/.packages/config.guess "$BUILD_libspatialite"
 
-  # try patch -p1 < $RECIPE_libspatialite/patches/config.patch
-  # try patch -p1 < $RECIPE_libspatialite/patches/make.patch
+  try patch -p1 < $RECIPE_libspatialite/patches/config.patch
+  #try patch -p1 < $RECIPE_libspatialite/patches/make.patch
 
   touch .patched
 }
 
 function shouldbuild_libspatialite() {
   # If lib is newer than the sourcecode skip build
-  if [ $BUILD_PATH/libspatialite/build-$ARCH/src/.libs/libspatialite.a -nt $BUILD_libspatialite/.patched ]; then
+  if [ $STAGE_PATH/lib/libspatialite.a -nt $BUILD_libspatialite/.patched ]; then
     DO_BUILD=0
   fi
 }
 
 # function called to build the source code
 function build_libspatialite() {
-  try mkdir -p $BUILD_PATH/libspatialite/build-$ARCH
+  try rsync -a $BUILD_libspatialite/ $BUILD_PATH/libspatialite/build-$ARCH/
   try cd $BUILD_PATH/libspatialite/build-$ARCH
 
   push_arm
 
-  # Use Proj 6.0.0 compatibility headers.
-  # Remove in libspatialite 5.0.0
-  export CFLAGS="$CFLAGS -DACCEPT_USE_OF_DEPRECATED_PROJ_API_H"
   # so the configure script can check that proj library contains pj_init_plus
   export LDFLAGS="$LDFLAGS -lc++"
 
-  try $BUILD_libspatialite/configure \
+  try $BUILD_PATH/libspatialite/build-$ARCH/configure \
     --prefix=$STAGE_PATH \
     --host=${TOOLCHAIN_PREFIX} \
     --with-geosconfig=$STAGE_PATH/bin/geos-config \
     --enable-libxml2=no \
-    --disable-shared \
     --disable-examples \
     --enable-proj=yes \
-    --enable-rttopo=no \
+    --disable-rttopo \
     --enable-gcp=no \
     --enable-minizip=no \
+    --disable-shared \
     --enable-static=yes
 
 

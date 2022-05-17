@@ -19,6 +19,7 @@ mac/.deps
 mac/.optional-deps
 
 build-*
+qfield-sdki-ios-*/
 
 .idea
 .DS_Store

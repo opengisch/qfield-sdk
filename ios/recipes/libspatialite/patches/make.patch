@@ -1,20 +1,47 @@
---- a/Makefile.in	2015-09-07 15:56:46.000000000 +0200
-+++ b/Makefile.in	2018-10-18 13:27:01.000000000 +0200
-@@ -189,7 +189,7 @@
+--- a/Makefile.in	2022-05-17 14:57:33.000000000 +0200
++++ b/Makefile.in	2021-02-07 16:53:46.000000000 +0100
+@@ -114,11 +114,11 @@ am__v_P_1 = :
+ AM_V_GEN = $(am__v_GEN_@AM_V@)
+ am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
+ am__v_GEN_0 = @echo "  GEN     " $@;
+-am__v_GEN_1 =
++am__v_GEN_1 = 
+ AM_V_at = $(am__v_at_@AM_V@)
+ am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
+ am__v_at_0 = @
+-am__v_at_1 =
++am__v_at_1 = 
+ SOURCES =
+ DIST_SOURCES =
+ RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
+@@ -192,7 +192,7 @@ am__define_uniq_tagged_files = \
  ETAGS = etags
  CTAGS = ctags
  CSCOPE = cscope
--DIST_SUBDIRS = src test examples
-+DIST_SUBDIRS = src
+-DIST_SUBDIRS = src
++DIST_SUBDIRS = src test examples
  am__DIST_COMMON = $(srcdir)/Doxyfile.in $(srcdir)/Makefile.in \
- 	$(srcdir)/config.h.in $(srcdir)/spatialite.pc.in AUTHORS \
- 	COPYING INSTALL README compile config.guess config.sub depcomp \
-@@ -372,7 +372,7 @@
- 	spatialite-sql-latest.html config-msvc.h
+ 	$(srcdir)/config-msvc.h.in $(srcdir)/config.h.in \
+ 	$(srcdir)/fakeconfig.h.in $(srcdir)/spatialite.pc.in \
+@@ -382,10 +382,10 @@ EXTRA_DIST = makefile.vc nmake.opt \
+ 	config-msvc.h config-msvc.h.in \
+ 	Android_3.0.2.mk Android_4.3.0.mk \
+ 	spatialite-4.3.0.mk Android_4.4.0.mk spatialite-4.4.0.mk \
+-	mainpage.doxy README.coverage spatialite-sql-latest.html
++	mainpage.doxy README.coverage spatialite-sql-latest.html 
  
  @ENABLE_EXAMPLES_TRUE@EXAMPLES = examples
--SUBDIRS = src test $(EXAMPLES)
-+SUBDIRS = src
+-SUBDIRS = src
++SUBDIRS = src test $(EXAMPLES)
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = spatialite.pc
  MOSTLYCLEANFILES = libspatialite_cov.info
+@@ -434,7 +434,7 @@ fakeconfig.h: stamp-h1
+ stamp-h1: $(srcdir)/fakeconfig.h.in $(top_builddir)/config.status
+ 	@rm -f stamp-h1
+ 	cd $(top_builddir) && $(SHELL) ./config.status ./fakeconfig.h
+-$(srcdir)/fakeconfig.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
++$(srcdir)/fakeconfig.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps) 
+ 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
+ 	rm -f stamp-h1
+ 	touch $@
