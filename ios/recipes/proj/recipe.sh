@@ -2,7 +2,7 @@
 
 
 # version of your package
-VERSION_proj=6.3.2
+VERSION_proj=9.0.0
 
 # dependencies of this recipe
 DEPS_proj=()
@@ -11,7 +11,7 @@ DEPS_proj=()
 URL_proj=https://github.com/OSGeo/PROJ/releases/download/$VERSION_proj/proj-$VERSION_proj.tar.gz
 
 # md5 of the package
-MD5_proj=2ca6366e12cd9d34d73b4602049ee480
+MD5_proj=180f9c60f74526690d059219fc7871e0
 
 # default build path
 BUILD_proj=$BUILD_PATH/proj/$(get_directory $URL_proj)
