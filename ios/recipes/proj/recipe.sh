@@ -60,12 +60,7 @@ function build_proj() {
     -DBUILD_TESTING=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DEXE_SQLITE3=`which sqlite3` \
-    -DBUILD_CCT=ON \
-    -DBUILD_CS2CS=ON \
-    -DBUILD_GEOD=OFF \
-    -DBUILD_GIE=OFF \
-    -DBUILD_PROJINFO=ON \
-    -DBUILD_PROJSYNC=OFF \
+    -DBUILD_APPS=OFF \
     -DENABLE_TIFF=OFF \
     -DENABLE_CURL=OFF \
     $BUILD_proj
