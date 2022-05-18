@@ -36,7 +36,7 @@ function prebuild_expat() {
 
 function shouldbuild_expat() {
   # If lib is newer than the sourcecode skip build
-  if [ $BUILD_PATH/expat/build-$ARCH/.libs/libexpat.a -nt $BUILD_expat/.patched ]; then
+  if [ $STAGE_PATH/lib/libexpat.a -nt $BUILD_expat/.patched ]; then
     DO_BUILD=0
   fi
 }
