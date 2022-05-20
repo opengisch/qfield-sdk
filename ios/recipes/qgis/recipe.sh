@@ -5,11 +5,10 @@ DEPS_qgis=(protobuf libtasn1 gdal qca proj libspatialite libspatialindex expat p
 
 EXTRACT_OPTIONS_qgis="--exclude='./tests/testdata/*'"
 
-# url of the package
-URL_qgis=https://github.com/qgis/QGIS/archive/refs/tags/final-3_24_2.tar.gz
+VERSION_qgis=3.22.6
+URL_qgis=https://github.com/qgis/QGIS/archive/refs/tags/final-${VERSION_qgis//./_}.tar.gz
+MD5_qgis=484584d5a9150ed9ab3e9cf3a021d63c
 
-# md5 of the package
-MD5_qgis=373b2a645649ffd0dd960cadae55cd1b
 
 # default build path
 BUILD_qgis=$BUILD_PATH/qgis/$(get_directory $URL_qgis)
