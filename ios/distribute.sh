@@ -303,6 +303,7 @@ function usage() {
   echo "  -x                     display expanded values (execute 'set -x')"
   echo
   echo "For developers:"
+  echo "  -g                     Build libs with debug symbols"
   echo "  -u 'mod1 mod2'         Modules to update (if already compiled)"
   echo
   exit 0
