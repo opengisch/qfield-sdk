@@ -73,14 +73,14 @@ function build_qgis() {
     -DGDAL_CONFIG_PREFER_PATH=$STAGE_PATH/bin \
     -DGDAL_INCLUDE_DIR=$STAGE_PATH/include \
     -DGDAL_LIBRARY=$STAGE_PATH/lib/libgdal.a \
-    -DGDAL_VERSION=3.5.0 \
+    -DGDAL_VERSION=$($STAGE_PATH/bin/gdal-config --version) \
     -DGEOSCXX_LIBRARY=$STAGE_PATH/lib/libgeos.a \
     -DGEOS_CONFIG=$STAGE_PATH/bin/geos-config \
     -DGEOS_CONFIG_PREFER_PATH=$STAGE_PATH/bin \
     -DGEOS_INCLUDE_DIR=$STAGE_PATH/include \
     -DGEOS_LIBRARY=$STAGE_PATH/lib/libgeos_c.a \
     -DGEOS_LIB_NAME_WITH_PREFIX=-lgeos_c \
-    -DGEOS_VERSION=3.10.2 \
+    -DGEOS_VERSION=$($STAGE_PATH/bin/geos-config --version) \
     -DICONV_INCLUDE_DIR=$SYSROOT\
     -DICONV_LIBRARY=$SYSROOT/usr/lib/libiconv.tbd \
     -DIOS=TRUE \

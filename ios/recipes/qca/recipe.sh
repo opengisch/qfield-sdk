@@ -61,6 +61,7 @@ function build_qca() {
   -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=TRUE \
   -DLIBRARY_TYPE=STATIC \
   -DBUILD_SHARED_LIBS=OFF \
+  -DWITH_botan_PLUGIN=OFF \
   $BUILD_qca
  try $MAKESMP install
 
